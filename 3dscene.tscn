@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8drvsigjfy1s"]
+
+[ext_resource type="ArrayMesh" uid="uid://bbg3jrnm7pnc0" path="res://models/ships/player_ship/player_ship.obj" id="1_hjghr"]
+[ext_resource type="Script" path="res://Player.gd" id="1_tc5q8"]
+[ext_resource type="Texture2D" uid="uid://c7lpiumagnkgj" path="res://sprites/redbullet.png" id="3_cfulv"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0uet6"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 14.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -18.0
+radial_accel_max = -18.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.65
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mngdk"]
+transparency = 1
+albedo_texture = ExtResource("3_cfulv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ywv7a"]
+material = SubResource("StandardMaterial3D_mngdk")
+size = Vector2(1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_tc5q8")
+
+[node name="PlayerShip" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = ExtResource("1_hjghr")
+skeleton = NodePath("../..")
+
+[node name="Shoot Offset" type="Node3D" parent="Player/PlayerShip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14689e-07, 4.91152)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27.798)
+projection = 1
+current = true
+size = 15.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+amount = 128
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_0uet6")
+draw_pass_1 = SubResource("PlaneMesh_ywv7a")
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
+radius = 4.0

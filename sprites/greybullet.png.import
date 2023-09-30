@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dav7r52hua7bv"
-path.s3tc="res://.godot/imported/bullet.png-bf127d53460a0826f847c19a5a1ace6c.s3tc.ctex"
+uid="uid://dw04cwlu3rp3b"
+path.s3tc="res://.godot/imported/greybullet.png-2410748811999d027917d7ea0dc38a6d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-bf127d53460a0826f847c19a5a1ace6c.s3tc.ctex"]
+source_file="res://sprites/greybullet.png"
+dest_files=["res://.godot/imported/greybullet.png-2410748811999d027917d7ea0dc38a6d.s3tc.ctex"]
 
 [params]
 
