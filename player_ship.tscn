@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hfka1v2a36ef"]
+
+[ext_resource type="ArrayMesh" uid="uid://bbg3jrnm7pnc0" path="res://models/ships/player_ship/player_ship.obj" id="1_247u3"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_247u3")
