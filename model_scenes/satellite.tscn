@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b325n078e0sfa"]
+
+[ext_resource type="ArrayMesh" uid="uid://ba4dquw56chm3" path="res://models/ships/satellite/Satellite_body.obj" id="1_s200g"]
+[ext_resource type="ArrayMesh" uid="uid://tpdovl150emg" path="res://models/ships/satellite/Satellite_dish.obj" id="2_h38m4"]
+[ext_resource type="Script" path="res://Satellite_dish.gd" id="3_flr5h"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.999985, 0.00522948, -0.00156261, -0.00522381, 0.99998, 0.00361618, 0.00158147, -0.00360797, 0.999992, 0, 0, 0)
+
+[node name="Satellite_body" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_s200g")
+
+[node name="Satellite_dish" type="MeshInstance3D" parent="Satellite_body"]
+mesh = ExtResource("2_h38m4")
+script = ExtResource("3_flr5h")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 4.9049e-09, 1.53668e-08, -1.51431e-10, 1, 6.0536e-09, 0, 0, 1, 0.00354883, -0.00809618, 2.24396)
