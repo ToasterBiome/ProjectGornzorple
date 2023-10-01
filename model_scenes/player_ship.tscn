@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://hfka1v2a36ef"]
+[gd_scene load_steps=4 format=3 uid="uid://hfka1v2a36ef"]
 
 [ext_resource type="ArrayMesh" uid="uid://bbg3jrnm7pnc0" path="res://models/ships/player_ship/player_ship.obj" id="1_eej21"]
+[ext_resource type="Texture2D" uid="uid://c26ouc7al4esl" path="res://textures/Player_ship.jpg" id="2_80g4w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ww6b"]
+albedo_texture = ExtResource("2_80g4w")
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_eej21")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ww6b")

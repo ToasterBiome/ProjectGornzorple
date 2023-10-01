@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://sag5frrjmocu"]
+[gd_scene load_steps=4 format=3 uid="uid://sag5frrjmocu"]
 
 [ext_resource type="ArrayMesh" uid="uid://oq78mev6anwx" path="res://models/ships/enemy_ship/pear_ship/pear_ship.obj" id="1_lyefo"]
+[ext_resource type="Material" uid="uid://dibhaw5decd1l" path="res://models/materials/pear_ship.tres" id="2_lpcvh"]
+[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_eqirh"]
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
 transform = Transform3D(0.999991, -0.0036807, 0.00229641, 0.00368531, 0.999991, -0.00200781, -0.00228899, 0.00201626, 0.999995, 0, 0, 0)
 mesh = ExtResource("1_lyefo")
+surface_material_override/0 = ExtResource("2_lpcvh")
+surface_material_override/1 = ExtResource("3_eqirh")

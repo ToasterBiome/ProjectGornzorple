@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b325n078e0sfa"]
+[gd_scene load_steps=5 format=3 uid="uid://b325n078e0sfa"]
 
 [ext_resource type="ArrayMesh" uid="uid://ba4dquw56chm3" path="res://models/ships/satellite/Satellite_body.obj" id="1_s200g"]
+[ext_resource type="Material" uid="uid://48sv03dexq5u" path="res://models/materials/Satellite.tres" id="2_12bif"]
 [ext_resource type="ArrayMesh" uid="uid://tpdovl150emg" path="res://models/ships/satellite/Satellite_dish.obj" id="2_h38m4"]
 [ext_resource type="Script" path="res://model_scenes/Satellite_dish.gd" id="3_eesn3"]
 
@@ -8,10 +9,13 @@
 transform = Transform3D(0.999985, 0.00522948, -0.00156261, -0.00522381, 0.99998, 0.00361618, 0.00158147, -0.00360797, 0.999992, 0, 0, 0)
 
 [node name="Satellite_body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 2.57478e-09, -6.98492e-10, -1.40972e-10, 1, -1.39698e-09, 6.98492e-10, 4.65661e-10, 1, 0, 0, 0)
 mesh = ExtResource("1_s200g")
+surface_material_override/0 = ExtResource("2_12bif")
 
 [node name="Satellite_dish" type="MeshInstance3D" parent="Satellite_body"]
 mesh = ExtResource("2_h38m4")
+surface_material_override/0 = ExtResource("2_12bif")
 script = ExtResource("3_eesn3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
