@@ -11,6 +11,8 @@ var braking_speed = 0.95
 
 var shot_scene = preload("res://scenes/shot.tscn")
 
+@onready var manager = $".."
+
 var next_shot = 0
 var shot_delay = 100 #ms
 
@@ -34,3 +36,10 @@ func _process(delta):
 			get_tree().get_root().add_child(new_shot)
 			new_shot.fire(shootOffset.global_position, shootOffset.get_global_transform().basis.z)
 			
+func hit(body: Node3D):
+	var shot_type: Shot.ShotType = body.get("shot_type")
+	if(!shot_type):
+		return
+	if(shot_type == 2):
+		manager.add_shield(1)
+	print(body.shot_type)

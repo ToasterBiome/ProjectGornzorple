@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn0juof0wubo4"]
+
+[ext_resource type="PackedScene" uid="uid://bfu3xffu6q5jg" path="res://scenes/enemy/generic_ship.tscn" id="1_fbmjj"]
+[ext_resource type="PackedScene" path="res://model_scenes/pear_ship.tscn" id="2_ybqcc"]
+
+[node name="Pear Ship" node_paths=PackedStringArray("firing_points") instance=ExtResource("1_fbmjj")]
+max_health = 5
+firing_points = [NodePath("MeshInstance3D/Firing Offset")]
+speed = 2.0
+
+[node name="MeshInstance3D" parent="." index="2" instance=ExtResource("2_ybqcc")]
+transform = Transform3D(0.149999, -0.000552104, 0.00034446, 0.000552796, 0.149999, -0.000301172, -0.000343348, 0.000302439, 0.149999, 0, 0, 0)
+
+[node name="Firing Offset" type="Node3D" parent="MeshInstance3D" index="0"]
+transform = Transform3D(1, -4.65661e-10, 5.91172e-12, -1.62981e-09, 1, 0, 9.09495e-12, 0, 1, -0.0112839, 0.00994018, 4.92988)

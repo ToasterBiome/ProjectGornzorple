@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://fd6ax4xm6hf0"]
+
+[ext_resource type="PackedScene" uid="uid://bfu3xffu6q5jg" path="res://scenes/enemy/generic_ship.tscn" id="1_sfw5s"]
+[ext_resource type="PackedScene" path="res://model_scenes/alien_ship.tscn" id="2_i13po"]
+
+[node name="Alien Skipper" instance=ExtResource("1_sfw5s")]
+max_health = 5
+speed = 10.0
+auto_look = false
+look_once = true
+
+[node name="Alien_ship" parent="." index="2" instance=ExtResource("2_i13po")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8drvsigjfy1s"]
+[gd_scene load_steps=15 format=3 uid="uid://b8drvsigjfy1s"]
 
 [ext_resource type="ArrayMesh" uid="uid://bbg3jrnm7pnc0" path="res://models/ships/player_ship/player_ship.obj" id="1_hjghr"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_o60uw"]
@@ -6,9 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bo18a08038yj8" path="res://sprites/redbullet.png" id="3_cfulv"]
 [ext_resource type="ArrayMesh" uid="uid://ba4dquw56chm3" path="res://models/ships/satellite/Satellite_body.obj" id="4_wt0bl"]
 [ext_resource type="ArrayMesh" uid="uid://tpdovl150emg" path="res://models/ships/satellite/Satellite_dish.obj" id="5_vkkvx"]
-[ext_resource type="Script" path="res://Satellite_dish.gd" id="6_538sq"]
-[ext_resource type="Script" path="res://Enemy.gd" id="8_mh8o4"]
-[ext_resource type="ArrayMesh" uid="uid://bt724lo2ur0v3" path="res://models/ships/enemy_ship/pirate_ship/pirate_ship.obj" id="9_swosk"]
+[ext_resource type="Script" path="res://model_scenes/Satellite_dish.gd" id="6_538sq"]
+[ext_resource type="Texture2D" uid="uid://cb5acm7obj8g4" path="res://sprites/9slice.png" id="8_h0fsa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
 radius = 1.48356
@@ -41,6 +40,7 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_mbp77"]
+lightmap_size_hint = Vector2i(127, 64)
 material = SubResource("StandardMaterial3D_oa08i")
 flip_faces = true
 radius = 4.0
@@ -48,6 +48,16 @@ height = 8.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_o60uw")
+
+[node name="Timers" type="Node3D" parent="."]
+
+[node name="Shooting Star Timer" type="Timer" parent="Timers"]
+wait_time = 4.0
+autostart = true
+
+[node name="Enemy Timer" type="Timer" parent="Timers"]
+wait_time = 3.5
+autostart = true
 
 [node name="Player" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -72,7 +82,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 projection = 1
 current = true
 size = 15.0
-near = 8.5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
@@ -102,36 +111,29 @@ skeleton = NodePath("../..")
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="Radiation Shield Satellite/Shield"]
 radius = 4.0
 
-[node name="Enemy" type="RigidBody3D" parent="." node_paths=PackedStringArray("firing_points")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.20579, 3.07776, 0)
-collision_layer = 2
-collision_mask = 2
-gravity_scale = 0.0
-continuous_cd = true
-contact_monitor = true
-script = ExtResource("8_mh8o4")
-firing_points = [NodePath("PirateShip/Firing Point A"), NodePath("PirateShip/Firing Point B"), NodePath("PirateShip/Firing Point C"), NodePath("PirateShip/Firing Point D")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Firing Timer" type="Timer" parent="Enemy"]
-wait_time = 0.5
-autostart = true
+[node name="Shield Percentage" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_top = 32.0
+offset_right = 171.0
+offset_bottom = 59.0
+grow_horizontal = 2
+max_value = 1.0
+value = 1.0
 
-[node name="PirateShip" type="MeshInstance3D" parent="Enemy"]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
-mesh = ExtResource("9_swosk")
-skeleton = NodePath("../..")
-
-[node name="Firing Point A" type="Node3D" parent="Enemy/PirateShip"]
-transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, -3.55271e-15, 1, -7.23945, 0, 0)
-
-[node name="Firing Point B" type="Node3D" parent="Enemy/PirateShip"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 7.28638, 0, 0)
-
-[node name="Firing Point C" type="Node3D" parent="Enemy/PirateShip"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 1.77636e-14, 0, -1.77636e-14, 0.999999, 4.65285, 2.48377e-07, 5.68219)
-
-[node name="Firing Point D" type="Node3D" parent="Enemy/PirateShip"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.4869e-14, 0, -2.4869e-14, 1, -4.61529, 2.48377e-07, 5.68219)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
-shape = SubResource("SphereShape3D_j1qnr")
+[node name="Dialogue Box" type="NinePatchRect" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -256.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_h0fsa")
