@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://drg28lkdibcct"]
+
+[ext_resource type="PackedScene" uid="uid://cf5e74ylg03b1" path="res://scenes/shot.tscn" id="1_f2w0f"]
+[ext_resource type="Texture2D" uid="uid://qmrnjl4e676f" path="res://sprites/greybullet.png" id="2_bk3k5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35ouy"]
+transparency = 1
+albedo_color = Color(1, 0.619608, 0.619608, 1)
+albedo_texture = ExtResource("2_bk3k5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bsj6p"]
+material = SubResource("StandardMaterial3D_35ouy")
+size = Vector2(0.25, 1)
+
+[node name="Shot" instance=ExtResource("1_f2w0f")]
+collision_layer = 8
+collision_mask = 1
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("PlaneMesh_bsj6p")
