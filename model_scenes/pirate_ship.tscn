@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsst3vb5oulyt"]
+
+[ext_resource type="ArrayMesh" uid="uid://bt724lo2ur0v3" path="res://models/ships/enemy_ship/pirate_ship/pirate_ship.obj" id="1_bb3g1"]
+
+[node name="Pirate_ship" type="MeshInstance3D"]
+mesh = ExtResource("1_bb3g1")

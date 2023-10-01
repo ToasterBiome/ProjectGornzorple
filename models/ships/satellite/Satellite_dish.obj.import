@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://tpdovl150emg"
+path="res://.godot/imported/Satellite_dish.obj-cf45a8d29da158aa464d1fbc253aca04.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Satellite_dish.obj-cf45a8d29da158aa464d1fbc253aca04.mesh"]
+
+source_file="res://models/ships/satellite/Satellite_dish.obj"
+dest_files=["res://.godot/imported/Satellite_dish.obj-cf45a8d29da158aa464d1fbc253aca04.mesh", "res://.godot/imported/Satellite_dish.obj-cf45a8d29da158aa464d1fbc253aca04.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

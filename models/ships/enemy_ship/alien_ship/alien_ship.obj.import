@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://o3tmqx7baw8m"
+path="res://.godot/imported/alien_ship.obj-70217c22f822dfddbea647d79db5906a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/alien_ship.obj-70217c22f822dfddbea647d79db5906a.mesh"]
+
+source_file="res://models/ships/enemy_ship/alien_ship/alien_ship.obj"
+dest_files=["res://.godot/imported/alien_ship.obj-70217c22f822dfddbea647d79db5906a.mesh", "res://.godot/imported/alien_ship.obj-70217c22f822dfddbea647d79db5906a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

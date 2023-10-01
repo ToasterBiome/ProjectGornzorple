@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ba4dquw56chm3"
+path="res://.godot/imported/Satellite_body.obj-7c35ee98179a98c7a5394016504e1bbf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Satellite_body.obj-7c35ee98179a98c7a5394016504e1bbf.mesh"]
+
+source_file="res://models/ships/satellite/Satellite_body.obj"
+dest_files=["res://.godot/imported/Satellite_body.obj-7c35ee98179a98c7a5394016504e1bbf.mesh", "res://.godot/imported/Satellite_body.obj-7c35ee98179a98c7a5394016504e1bbf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dav7r52hua7bv"
-path.s3tc="res://.godot/imported/bullet.png-bf127d53460a0826f847c19a5a1ace6c.s3tc.ctex"
+uid="uid://bo18a08038yj8"
+path.s3tc="res://.godot/imported/redbullet.png-e7be08af89a252f1601d51f37578502f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-bf127d53460a0826f847c19a5a1ace6c.s3tc.ctex"]
+source_file="res://sprites/redbullet.png"
+dest_files=["res://.godot/imported/redbullet.png-e7be08af89a252f1601d51f37578502f.s3tc.ctex"]
 
 [params]
 
