@@ -1,0 +1,10 @@
+[gd_resource type="ORMMaterial3D" load_steps=2 format=3 uid="uid://dibhaw5decd1l"]
+
+[ext_resource type="Texture2D" uid="uid://cnvhy36ud4cuc" path="res://textures/pear_ship.png" id="1_wvld4"]
+
+[resource]
+transparency = 4
+blend_mode = 1
+albedo_color = Color(0.533333, 1, 0.517647, 0.431373)
+albedo_texture = ExtResource("1_wvld4")
+rim_enabled = true
