@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1yvisaqpxxoa"]
+
+[ext_resource type="ArrayMesh" uid="uid://d215s47ur7b58" path="res://models/ships/destroyed ships/destroyed_pear_ship.obj" id="1_0qmx1"]
+[ext_resource type="Material" uid="uid://cmb7450dfcri5" path="res://models/materials/pear_ship_m.tres" id="2_sk0kc"]
+[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_7ced8"]
+
+[node name="Pear_ship_destroyed" type="MeshInstance3D"]
+mesh = ExtResource("1_0qmx1")
+surface_material_override/0 = ExtResource("2_sk0kc")
+surface_material_override/1 = ExtResource("3_7ced8")

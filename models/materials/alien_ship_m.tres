@@ -8,3 +8,4 @@ blend_mode = 1
 no_depth_test = true
 albedo_color = Color(0.654902, 0.921569, 0.211765, 0.623529)
 albedo_texture = ExtResource("1_gygpg")
+texture_filter = 0

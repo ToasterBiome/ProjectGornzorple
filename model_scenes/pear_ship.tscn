@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbofm43e84osi"]
+[gd_scene load_steps=4 format=3 uid="uid://sag5frrjmocu"]
 
 [ext_resource type="ArrayMesh" uid="uid://oq78mev6anwx" path="res://models/ships/enemy_ship/pear_ship/pear_ship.obj" id="1_lyefo"]
-[ext_resource type="Material" path="res://models/materials/pear_ship_m.tres" id="2_l45uj"]
+[ext_resource type="Material" uid="uid://cmb7450dfcri5" path="res://models/materials/pear_ship_m.tres" id="2_l45uj"]
 [ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_pi282"]
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
