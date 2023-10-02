@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://btw2iohkisu06"]
+
+[ext_resource type="Texture2D" uid="uid://b8jdx22tvqv0t" path="res://sprites/sqrt1.png" id="1_yma3l"]
+[ext_resource type="Script" path="res://code/Character.gd" id="1_yyplc"]
+[ext_resource type="Texture2D" uid="uid://bt021ijokniy4" path="res://sprites/sqrt2.png" id="2_on2ni"]
+[ext_resource type="Texture2D" uid="uid://bnd3xyvuqjwlo" path="res://sprites/sqrt3.png" id="3_3okp2"]
+[ext_resource type="Texture2D" uid="uid://dyh3wpkbx1dex" path="res://sprites/sqrt4.png" id="4_gpq72"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g04vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yma3l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yma3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_on2ni")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3okp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gpq72")
+}],
+"loop": true,
+"name": &"worried",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_yyplc")
+name = "SQ 1RT"
+portrait = SubResource("SpriteFrames_g04vc")
+name_color = Color(0, 0, 0, 1)

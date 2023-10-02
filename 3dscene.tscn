@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8drvsigjfy1s"]
+[gd_scene load_steps=20 format=3 uid="uid://b8drvsigjfy1s"]
 
 [ext_resource type="ArrayMesh" uid="uid://bbg3jrnm7pnc0" path="res://models/ships/player_ship/player_ship.obj" id="1_hjghr"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_o60uw"]
@@ -7,7 +7,11 @@
 [ext_resource type="ArrayMesh" uid="uid://ba4dquw56chm3" path="res://models/ships/satellite/Satellite_body.obj" id="4_wt0bl"]
 [ext_resource type="ArrayMesh" uid="uid://tpdovl150emg" path="res://models/ships/satellite/Satellite_dish.obj" id="5_vkkvx"]
 [ext_resource type="Script" path="res://model_scenes/Satellite_dish.gd" id="6_538sq"]
-[ext_resource type="Texture2D" uid="uid://cb5acm7obj8g4" path="res://sprites/9slice.png" id="8_h0fsa"]
+[ext_resource type="Texture2D" uid="uid://cffajd72emq5o" path="res://sprites/9slice.png" id="8_h0fsa"]
+[ext_resource type="Script" path="res://Textbox.gd" id="9_i107j"]
+[ext_resource type="Texture2D" uid="uid://cx8lmgatnmatx" path="res://sprites/border2.png" id="9_jx3uh"]
+[ext_resource type="Theme" uid="uid://d2nbqy6cx31ti" path="res://MainTheme.tres" id="10_ayhyq"]
+[ext_resource type="Texture2D" uid="uid://dyh3wpkbx1dex" path="res://sprites/sqrt4.png" id="11_wavdo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
 radius = 1.48356
@@ -45,6 +49,17 @@ material = SubResource("StandardMaterial3D_oa08i")
 flip_faces = true
 radius = 4.0
 height = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfw87"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_wavdo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_o60uw")
@@ -125,15 +140,72 @@ grow_horizontal = 2
 max_value = 1.0
 value = 1.0
 
-[node name="Dialogue Box" type="NinePatchRect" parent="CanvasLayer"]
+[node name="Textbox" type="NinePatchRect" parent="CanvasLayer"]
+self_modulate = Color(0.341176, 1, 0.870588, 1)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -320.0
-offset_top = -256.0
-offset_right = 320.0
+offset_left = -192.0
+offset_top = -272.0
+offset_right = 448.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("8_h0fsa")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+script = ExtResource("9_i107j")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Textbox"]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 26.0
+offset_top = 31.0
+offset_right = 612.0
+offset_bottom = 227.0
+
+[node name="Portait Box" type="NinePatchRect" parent="CanvasLayer/Textbox"]
+self_modulate = Color(1, 0.811765, 0.945098, 1)
+layout_mode = 0
+offset_left = -256.0
+offset_bottom = 256.0
+texture = ExtResource("9_jx3uh")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+
+[node name="Portrait" type="AnimatedSprite2D" parent="CanvasLayer/Textbox/Portait Box"]
+show_behind_parent = true
+position = Vector2(128, 128)
+scale = Vector2(0.38, 0.38)
+sprite_frames = SubResource("SpriteFrames_jfw87")
+
+[node name="Name" type="RichTextLabel" parent="CanvasLayer/Textbox"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 215.0
+offset_bottom = 48.0
+theme = ExtResource("10_ayhyq")
+bbcode_enabled = true
+text = "[b]BLADE[/b]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/Textbox"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 592.0
+offset_bottom = 208.0
+theme = ExtResource("10_ayhyq")
+bbcode_enabled = true
+text = "Relax Liberal, it's called dark humor."
+scroll_active = false
+visible_characters_behavior = 1

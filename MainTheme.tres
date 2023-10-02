@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d2nbqy6cx31ti"]
+
+[ext_resource type="FontFile" uid="uid://crppu31lkl0yn" path="res://fonts/BadComic-Regular.ttf" id="1_lo0f7"]
+
+[resource]
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("1_lo0f7")
