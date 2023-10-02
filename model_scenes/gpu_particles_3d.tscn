@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyxwpt373hwb1"]
+
+[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="1_iovpr"]
+[ext_resource type="ArrayMesh" uid="uid://doe8lrb0y0q1j" path="res://models/pickup/pixel.obj" id="2_n00hf"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ugpv1"]
+
+[sub_resource type="Curve" id="Curve_4m773"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bo01s"]
+curve = SubResource("Curve_4m773")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7g47s"]
+lifetime_randomness = 0.6
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 227.53
+initial_velocity_max = 500.0
+scale_min = 30.0
+scale_max = 81.94
+scale_curve = SubResource("CurveTexture_bo01s")
+color = Color(1, 1, 1, 0)
+color_initial_ramp = SubResource("GradientTexture1D_ugpv1")
+hue_variation_min = 0.76
+hue_variation_max = 0.76
+turbulence_noise_strength = 2.15
+turbulence_noise_scale = 6.8
+
+[node name="Radiation_particle_explosion" type="GPUParticles3D"]
+material_override = ExtResource("1_iovpr")
+amount = 50
+lifetime = 1.25
+preprocess = 0.03
+explosiveness = 1.0
+randomness = 0.21
+collision_base_size = 0.0
+local_coords = true
+trail_lifetime = 8.4
+process_material = SubResource("ParticleProcessMaterial_7g47s")
+draw_pass_1 = ExtResource("2_n00hf")
