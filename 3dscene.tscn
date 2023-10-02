@@ -1,16 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8drvsigjfy1s"]
+[gd_scene load_steps=21 format=3 uid="uid://b8drvsigjfy1s"]
 
-[ext_resource type="ArrayMesh" uid="uid://bbg3jrnm7pnc0" path="res://models/ships/player_ship/player_ship.obj" id="1_hjghr"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_o60uw"]
 [ext_resource type="Script" path="res://Player.gd" id="1_tc5q8"]
 [ext_resource type="Texture2D" uid="uid://bo18a08038yj8" path="res://sprites/redbullet.png" id="3_cfulv"]
-[ext_resource type="ArrayMesh" uid="uid://ba4dquw56chm3" path="res://models/ships/satellite/Satellite_body.obj" id="4_wt0bl"]
-[ext_resource type="ArrayMesh" uid="uid://tpdovl150emg" path="res://models/ships/satellite/Satellite_dish.obj" id="5_vkkvx"]
-[ext_resource type="Script" path="res://model_scenes/Satellite_dish.gd" id="6_538sq"]
+[ext_resource type="PackedScene" uid="uid://hfka1v2a36ef" path="res://model_scenes/player_ship.tscn" id="3_eb2rq"]
+[ext_resource type="PackedScene" uid="uid://b325n078e0sfa" path="res://model_scenes/satellite.tscn" id="5_52db2"]
+[ext_resource type="Material" uid="uid://cpbu7ctwbbvs" path="res://models/materials/shield_material.tres" id="6_k1e8w"]
 [ext_resource type="Texture2D" uid="uid://cffajd72emq5o" path="res://sprites/9slice.png" id="8_h0fsa"]
 [ext_resource type="Script" path="res://Textbox.gd" id="9_i107j"]
-[ext_resource type="Texture2D" uid="uid://cx8lmgatnmatx" path="res://sprites/border2.png" id="9_jx3uh"]
+[ext_resource type="Texture2D" uid="uid://crilxfslnrifd" path="res://sprites/border2.png" id="9_jx3uh"]
 [ext_resource type="Theme" uid="uid://d2nbqy6cx31ti" path="res://MainTheme.tres" id="10_ayhyq"]
+[ext_resource type="Script" path="res://Death Screen.gd" id="11_f38vn"]
 [ext_resource type="Texture2D" uid="uid://dyh3wpkbx1dex" path="res://sprites/sqrt4.png" id="11_wavdo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
@@ -36,6 +36,10 @@ albedo_texture = ExtResource("3_cfulv")
 [sub_resource type="PlaneMesh" id="PlaneMesh_ywv7a"]
 material = SubResource("StandardMaterial3D_mngdk")
 size = Vector2(1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yc3on"]
+emission_shape = 3
+emission_box_extents = Vector3(6, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa08i"]
 transparency = 1
@@ -68,11 +72,9 @@ script = ExtResource("1_o60uw")
 
 [node name="Shooting Star Timer" type="Timer" parent="Timers"]
 wait_time = 4.0
-autostart = true
 
 [node name="Enemy Timer" type="Timer" parent="Timers"]
 wait_time = 3.5
-autostart = true
 
 [node name="Player" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -81,10 +83,8 @@ gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_tc5q8")
 
-[node name="PlayerShip" type="MeshInstance3D" parent="Player"]
+[node name="PlayerShip" parent="Player" instance=ExtResource("3_eb2rq")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
-mesh = ExtResource("1_hjghr")
-skeleton = NodePath("../..")
 
 [node name="Shoot Offset" type="Node3D" parent="Player/PlayerShip"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14689e-07, 4.91152)
@@ -108,20 +108,23 @@ lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_0uet6")
 draw_pass_1 = SubResource("PlaneMesh_ywv7a")
 
+[node name="Cutscene Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10.6499, 8.2636, 0)
+amount = 64
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_yc3on")
+draw_pass_1 = SubResource("PlaneMesh_ywv7a")
+
 [node name="Radiation Shield Satellite" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="Satellite_body" type="MeshInstance3D" parent="Radiation Shield Satellite"]
-mesh = ExtResource("4_wt0bl")
-
-[node name="Satellite_dish" type="MeshInstance3D" parent="Radiation Shield Satellite/Satellite_body"]
-mesh = ExtResource("5_vkkvx")
-script = ExtResource("6_538sq")
+[node name="Node3D" parent="Radiation Shield Satellite" instance=ExtResource("5_52db2")]
 
 [node name="Shield" type="MeshInstance3D" parent="Radiation Shield Satellite"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("SphereMesh_mbp77")
 skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("6_k1e8w")
 
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="Radiation Shield Satellite/Shield"]
 radius = 4.0
@@ -209,3 +212,65 @@ bbcode_enabled = true
 text = "Relax Liberal, it's called dark humor."
 scroll_active = false
 visible_characters_behavior = 1
+
+[node name="Death Screen" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.65098)
+script = ExtResource("11_f38vn")
+
+[node name="Death Text" type="RichTextLabel" parent="CanvasLayer/Death Screen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.0
+offset_top = 64.0
+offset_right = 314.0
+offset_bottom = 320.0
+grow_horizontal = 2
+theme = ExtResource("10_ayhyq")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]You perished inside the Cosmic Bullet Radiation Field.
+
+"
+scroll_active = false
+
+[node name="Score" type="RichTextLabel" parent="CanvasLayer/Death Screen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.0
+offset_top = 320.0
+offset_right = 314.0
+offset_bottom = 362.0
+grow_horizontal = 2
+theme = ExtResource("10_ayhyq")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Score: 551
+
+"
+scroll_active = false
+
+[node name="Main Menu Button" type="Button" parent="CanvasLayer/Death Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = 40.0
+offset_right = 156.5
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_ayhyq")
+text = "Return to Main Menu"

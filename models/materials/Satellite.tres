@@ -8,3 +8,4 @@ albedo_texture = ExtResource("1_ea2ap")
 rim = 0.4
 rim_tint = 0.25
 ao_light_affect = 1.0
+texture_filter = 0

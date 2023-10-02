@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpxpvv5w6tpxp"]
+
+[ext_resource type="ArrayMesh" uid="uid://dpur45gyiul3c" path="res://models/ships/destroyed ships/destroyed_alien_ship.obj" id="1_wenvu"]
+[ext_resource type="Material" uid="uid://bk6e8u5plb25w" path="res://models/materials/alien_ship_m.tres" id="2_e2320"]
+[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_shxba"]
+
+[node name="Alien_ship_destroyed" type="MeshInstance3D"]
+mesh = ExtResource("1_wenvu")
+surface_material_override/0 = ExtResource("2_e2320")
+surface_material_override/1 = ExtResource("3_shxba")

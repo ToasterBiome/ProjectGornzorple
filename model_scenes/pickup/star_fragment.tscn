@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsgseqkq5p7y"]
+
+[ext_resource type="ArrayMesh" uid="uid://0wuj1y7wkn8b" path="res://models/pickup/starfragment.obj" id="1_apyl2"]
+[ext_resource type="Material" uid="uid://ddc62k1hinqsd" path="res://models/materials/star_fragment.tres" id="2_iccr6"]
+
+[node name="Star_fragment" type="MeshInstance3D"]
+mesh = ExtResource("1_apyl2")
+surface_material_override/0 = ExtResource("2_iccr6")

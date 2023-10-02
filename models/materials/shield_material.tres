@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cpbu7ctwbbvs"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+cull_mode = 1
+depth_draw_mode = 1
+no_depth_test = true
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(3.46541e-05, 0.799462, 0.998585, 0.0117647)
+metallic = 0.09
+metallic_specular = 0.67
+metallic_texture_channel = 4
+roughness = 0.84
+emission_enabled = true
+emission = Color(0.14902, 0.243137, 0.941176, 1)
+emission_energy_multiplier = 20.25
+rim_enabled = true
+rim_tint = 0.0

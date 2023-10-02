@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2db1esf1tbi4"
+path="res://.godot/imported/destroyed_satellite.obj-0b6748cf336c7ebd851ccc8b04139eee.mesh"
+
+[deps]
+
+files=["res://.godot/imported/destroyed_satellite.obj-0b6748cf336c7ebd851ccc8b04139eee.mesh"]
+
+source_file="res://models/ships/destroyed ships/destroyed_satellite.obj"
+dest_files=["res://.godot/imported/destroyed_satellite.obj-0b6748cf336c7ebd851ccc8b04139eee.mesh", "res://.godot/imported/destroyed_satellite.obj-0b6748cf336c7ebd851ccc8b04139eee.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

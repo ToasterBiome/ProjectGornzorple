@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://clu6txllm6ul2"]
+
+[ext_resource type="Material" uid="uid://cn2gc35e0rmfn" path="res://models/materials/ghost_explosion_M.tres" id="1_w3v8g"]
+[ext_resource type="Material" uid="uid://df3x50141vttd" path="res://models/materials/radiation_particles.tres" id="2_sxjow"]
+[ext_resource type="ArrayMesh" uid="uid://doe8lrb0y0q1j" path="res://models/pickup/pixel.obj" id="3_4dcug"]
+
+[node name="Human_particle_explosion" type="GPUParticles3D"]
+material_override = ExtResource("1_w3v8g")
+amount = 50
+lifetime = 1.25
+preprocess = 0.03
+explosiveness = 1.0
+randomness = 0.21
+collision_base_size = 0.0
+local_coords = true
+trail_lifetime = 8.4
+process_material = ExtResource("2_sxjow")
+draw_pass_1 = ExtResource("3_4dcug")

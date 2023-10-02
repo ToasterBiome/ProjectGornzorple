@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Gornzorple"
-run/main_scene="res://3dscene.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -67,4 +67,8 @@ shoot={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/default_filters/anisotropic_filtering_level=0
+textures/decals/filter=2
+textures/light_projectors/filter=2
 environment/defaults/default_clear_color=Color(0.239216, 0.239216, 0.239216, 1)

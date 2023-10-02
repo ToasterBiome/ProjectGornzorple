@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://2cy5opkwecda"]
+[gd_scene load_steps=11 format=3 uid="uid://2cy5opkwecda"]
 
 [ext_resource type="PackedScene" uid="uid://cf5e74ylg03b1" path="res://scenes/shot.tscn" id="1_8hh2m"]
+[ext_resource type="ArrayMesh" uid="uid://0wuj1y7wkn8b" path="res://models/pickup/starfragment.obj" id="2_fc2vg"]
+[ext_resource type="Material" path="res://models/materials/star_fragment.tres" id="3_l3c3y"]
+[ext_resource type="Texture2D" uid="uid://yifn2y727bvi" path="res://sprites/star2.png" id="4_1uk3k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bv3sl"]
+radius = 0.188
+
+[sub_resource type="Curve" id="Curve_10csa"]
+_data = [Vector2(0.25784, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lhhw6"]
+curve = SubResource("Curve_10csa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_buoxr"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, -1)
+scale_curve = SubResource("CurveTexture_lhhw6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx8vg"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_1uk3k")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uad6r"]
+material = SubResource("StandardMaterial3D_lx8vg")
+size = Vector2(0.25, 0.25)
 
 [node name="Shooting Star" instance=ExtResource("1_8hh2m")]
 collision_layer = 16
@@ -8,3 +40,17 @@ collision_mask = 1
 speed = 10
 lifetime = 8.0
 shot_type = 2
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_bv3sl")
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.15, 1.25278e-23, -5.47609e-31, 0, -6.55671e-09, -0.15, -1.25278e-23, 0.15, -6.55671e-09, 0, 0, 0)
+mesh = ExtResource("2_fc2vg")
+surface_material_override/0 = ExtResource("3_l3c3y")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_buoxr")
+draw_pass_1 = SubResource("PlaneMesh_uad6r")
