@@ -21,15 +21,19 @@ Character.gd::GDScript::-1::1696207222::0::1::::Character<>Resource<>::
 ::res://fonts/::1696207274
 BadComic-Italic.ttf::FontFile::6778002214304611374::1696207222::1696207274::1::::<><>::
 BadComic-Regular.ttf::FontFile::5997965357645578105::1696207222::1696207274::1::::<><>::
-::res://models/::1696187233
-::res://models/materials/::1696212849
+::res://models/::1696214328
+::res://models/materials/::1696214409
 alien_ship_m.tres::StandardMaterial3D::3152607727126643350::1696208983::0::1::::<><>::uid://xwlx1688xmij::::res://textures/alien_ship.jpg
 ghost_emissive.tres::ORMMaterial3D::1592511955113432328::1696208129::0::1::::<><>::
 pear_ship_m.tres::StandardMaterial3D::5619168215052120562::1696208999::0::1::::<><>::uid://cnvhy36ud4cuc::::res://textures/pear_ship.png
 pirate_ship_m.tres::StandardMaterial3D::491094089744946350::1696209019::0::1::::<><>::uid://c3dy0ory5f317::::res://textures/Pirate_ship_texture.jpg
 player_ship.tres::StandardMaterial3D::6413222521782835790::1696208967::0::1::::<><>::uid://c26ouc7al4esl::::res://textures/Player_ship.jpg
 player_ship_destroyed.tres::StandardMaterial3D::3839430094745482161::1696212849::0::1::::<><>::
+star_fragment.tres::StandardMaterial3D::7375888346440397423::1696214409::0::1::::<><>::
 Satellite.tres::StandardMaterial3D::2104732695409563304::1696208899::0::1::::<><>::uid://doy04h1vep0xv::::res://textures/SATELITTE.png
+::res://models/pickup/::1696214461
+destroyed_satellite.obj::Mesh::7880454377687754068::1696214330::1696214332::1::::<><>::
+starfragment.obj::Mesh::1801369217706749895::1696214461::1696214462::1::::<><>::
 ::res://models/ships/::1696212214
 ::res://models/ships/destroyed ships/::1696212908
 destroyed_alien_ship.obj::Mesh::8254467823702527750::1696212334::1696212350::1::::<><>::
@@ -58,11 +62,12 @@ pirate_ship.tscn::PackedScene::3688183399760388335::1696209019::0::1::::<><>::ui
 player_ship.tscn::PackedScene::502252363440079625::1696208967::0::1::::<><>::uid://bbg3jrnm7pnc0::::res://models/ships/player_ship/player_ship.obj<>uid://cxmu3qw2b3k0e::::res://models/materials/player_ship.tres
 satellite.tscn::PackedScene::4409292594044592154::1696208913::0::1::::<><>::uid://ba4dquw56chm3::::res://models/ships/satellite/Satellite_body.obj<>uid://48sv03dexq5u::::res://models/materials/Satellite.tres<>uid://tpdovl150emg::::res://models/ships/satellite/Satellite_dish.obj<>res://model_scenes/Satellite_dish.gd
 Satellite_dish.gd::GDScript::-1::1696208533::0::1::::<>MeshInstance3D<>::
-::res://model_scenes/destroyed ships/::1696213099
+::res://model_scenes/destroyed ships/::1696213283
 player_ship_destroyed.tscn::PackedScene::4920078169094534905::1696212838::0::1::::<><>::uid://gxnyfk7n0qov::::res://models/ships/destroyed ships/destroyed_player_ship.obj<>uid://cxmu3qw2b3k0e::::res://models/materials/player_ship.tres
 alien_ship_destroyed.tscn::PackedScene::5874104117239818657::1696213042::0::1::::<><>::uid://dpur45gyiul3c::::res://models/ships/destroyed ships/destroyed_alien_ship.obj<>uid://bk6e8u5plb25w::::res://models/materials/alien_ship_m.tres<>uid://wxoo60tjrle3::::res://models/materials/ghost_emissive.tres
 pear_ship_destroyed.tscn::PackedScene::9035007341133160160::1696213099::0::1::::<><>::uid://d215s47ur7b58::::res://models/ships/destroyed ships/destroyed_pear_ship.obj<>uid://cmb7450dfcri5::::res://models/materials/pear_ship_m.tres<>uid://wxoo60tjrle3::::res://models/materials/ghost_emissive.tres
-satellite_destroyed.tscn::PackedScene::375777951865709240::1696212965::0::1::::<><>::uid://b2db1esf1tbi4::::res://models/ships/destroyed ships/destroyed_satellite.obj
+pirate_ship_destroyed.tscn::PackedScene::4689964968545590072::1696213158::0::1::::<><>::uid://dt0fa45rdjb43::::res://models/ships/destroyed ships/destroyed_pirate_ship.obj<>uid://g85iot14hjd3::::res://models/materials/pirate_ship_m.tres<>uid://wxoo60tjrle3::::res://models/materials/ghost_emissive.tres
+satellite_destroyed.tscn::PackedScene::375777951865709240::1696213283::0::1::::<><>::uid://b2db1esf1tbi4::::res://models/ships/destroyed ships/destroyed_satellite.obj
 ::res://scenes/::1696203563
 enemy_shot.tscn::PackedScene::8366557542805702855::1696141672::0::1::::<><>::uid://cf5e74ylg03b1
 shooting_star.tscn::PackedScene::1900739074361417454::1696203563::0::1::::<><>::uid://cf5e74ylg03b1
@@ -72,7 +77,7 @@ alien_skipper.tscn::PackedScene::359020832126760503::1696207538::0::1::::<><>::u
 big_chungus.tscn::PackedScene::9030135757503217604::1696207538::0::1::::<><>::uid://bfu3xffu6q5jg
 generic_ship.tscn::PackedScene::2780393877313303648::1696203563::0::1::::<><>::res://Enemy.gd
 pear_ship.tscn::PackedScene::8123909375255211485::1696203563::0::1::::<><>::uid://bfu3xffu6q5jg
-::res://sounds/::1696213108
+::res://sounds/::1696213110
 alienpoopspell.wav::AudioStreamWAV::6937697197659338591::1696213108::1696213110::1::::<><>::
 damage.wav::AudioStreamWAV::8544586337531773464::1696212345::1696212350::1::::<><>::
 enemy death.wav::AudioStreamWAV::8753495609137283413::1696207222::1696207274::1::::<><>::
