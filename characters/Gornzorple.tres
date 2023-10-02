@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://da7j1pmv2iuo1"]
+
+[ext_resource type="Texture2D" uid="uid://bq03ohshag41u" path="res://sprites/pilot3.png" id="1_6umfs"]
+[ext_resource type="Script" path="res://code/Character.gd" id="1_j3rpi"]
+[ext_resource type="Texture2D" uid="uid://2ogibtfbslsv" path="res://sprites/pilot4.png" id="2_e7yw4"]
+[ext_resource type="Texture2D" uid="uid://c2keuwi8pdlvy" path="res://sprites/pilot1.png" id="3_4v8j5"]
+[ext_resource type="Texture2D" uid="uid://byqao0y1s8aso" path="res://sprites/pilot5.png" id="4_1gpyw"]
+[ext_resource type="Texture2D" uid="uid://4ha2f30epmda" path="res://sprites/pilot2.png" id="5_uvmnl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1duy8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6umfs")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6umfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e7yw4")
+}],
+"loop": true,
+"name": &"angry_talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4v8j5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1gpyw")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4v8j5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uvmnl")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_j3rpi")
+name = "Gornzorple"
+portrait = SubResource("SpriteFrames_1duy8")
+name_color = Color(0, 0, 0, 1)

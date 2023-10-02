@@ -20,6 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00438, 0)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_nk5pn")
+shot_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_6j12k")

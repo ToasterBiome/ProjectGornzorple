@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://2cy5opkwecda"]
+
+[ext_resource type="PackedScene" uid="uid://cf5e74ylg03b1" path="res://scenes/shot.tscn" id="1_8hh2m"]
+
+[node name="Shooting Star" instance=ExtResource("1_8hh2m")]
+collision_layer = 16
+collision_mask = 1
+speed = 10
+lifetime = 8.0
+shot_type = 2

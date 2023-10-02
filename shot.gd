@@ -1,12 +1,21 @@
 extends Area3D
+class_name Shot
 
 var direction
 
-var speed = 60
+@export var speed = 90
 
 @onready var mesh = $MeshInstance3D
 
-var lifetime: float = 2.0
+@export var lifetime: float = 2.0
+
+enum ShotType {
+	Enemy,
+	Player,
+	ShootingStar
+}
+
+@export var shot_type : ShotType = ShotType.Enemy
 
 func _ready():
 	body_entered.connect(Callable(self, "on_body_entered"))
@@ -31,5 +40,5 @@ func fire(fire_pos, rot):
 func on_body_entered(body: Node3D):
 	print("hit")
 	if(body.has_method("hit")):
-		body.hit()
+		body.hit(self)
 	queue_free()

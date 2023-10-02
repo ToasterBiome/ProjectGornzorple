@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfu3xffu6q5jg"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_5ag0v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
+radius = 1.0
+
+[node name="Generic Ship" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.20579, 3.07776, 0)
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+continuous_cd = true
+contact_monitor = true
+script = ExtResource("1_5ag0v")
+
+[node name="Firing Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_j1qnr")
