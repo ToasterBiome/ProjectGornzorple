@@ -7,6 +7,8 @@ var braking_speed = 0.95
 
 @onready var camera = $"../Camera3D"
 @onready var model = $PlayerShip
+@onready var dead_model = $Player_ship_destroyed
+@onready var explosion = $Human_particle_explosion
 @onready var shootOffset = $"PlayerShip/Shoot Offset"
 
 var shot_scene = preload("res://scenes/shot.tscn")
@@ -18,6 +20,10 @@ var shot_delay = 100 #ms
 
 var can_move = false
 var dead = false
+
+#audio stuff
+@onready var shoot_sound:AudioStreamPlayer3D = $Shoot
+@onready var damage_sound: AudioStreamPlayer3D = $Damage
 
 func _ready():
 	look_at(Vector3.UP, Vector3.FORWARD, true)
@@ -42,6 +48,7 @@ func _physics_process(delta):
 func _process(_delta):
 	if(Input.get_action_strength("shoot") && can_move):
 		if(next_shot <= Time.get_ticks_msec()):
+			shoot_sound.play()
 			next_shot = Time.get_ticks_msec() + shot_delay
 			var new_shot = shot_scene.instantiate()
 			get_tree().get_root().add_child(new_shot)
@@ -54,4 +61,15 @@ func hit(body: Node3D):
 	if(shot_type == 2):
 		manager.add_shield(1)
 	else:
+		explode()
 		manager._die()
+
+func explode():
+	if(dead):
+		return
+	model.hide()
+	explosion.emitting = true
+	dead_model.show()
+	var death_sound = Globals.explosion_scene.instantiate()
+	get_parent().add_child(death_sound)
+		

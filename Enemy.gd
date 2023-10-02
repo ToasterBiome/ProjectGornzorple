@@ -21,6 +21,15 @@ var firing_index: int = 0
 
 var can_shoot = true
 
+@onready var shoot_sound: AudioStreamPlayer3D = $Shoot
+@onready var damage_sound: AudioStreamPlayer3D = $Damage
+
+@export var model: MeshInstance3D
+@export var dead_model: MeshInstance3D
+@onready var explosion = $Radiation_particle_explosion
+
+@onready var hitbox = $CollisionShape3D
+
 func _ready():
 	health = max_health
 	firing_timer.timeout.connect(Callable(self,"_fire"))
@@ -29,6 +38,8 @@ func _ready():
 	
 	
 func _physics_process(delta):
+	if(health <= 0):
+		return
 	if(auto_look):
 		look_at(player.position, Vector3.BACK, true)
 	move_and_collide(basis.z * delta * speed)
@@ -40,6 +51,7 @@ func _fire():
 		return
 	if(!_in_range() || !firing_points.size()):
 		return
+	shoot_sound.play()
 	firing_index += 1
 	if(firing_index > firing_points.size() - 1):
 		firing_index = 0
@@ -52,8 +64,23 @@ func _in_range():
 	return (position.distance_to(player.position) <= firing_range)
 	
 func hit(_body: Node3D):
-	health -= 1
 	if(health <= 0):
-		queue_free()
+		return
+	health -= 1
+	damage_sound.play()
+	if(health <= 0):
+		var death_sound = Globals.explosion_scene.instantiate()
+		get_parent().add_child(death_sound)
+		can_shoot = false
+		model.hide()
+		dead_model.show()
+		explosion.emitting = true
 		Globals.score += 10
+		call_deferred("_disable_hitbox")
+		await get_tree().create_timer(2.0).timeout
+		queue_free()
+		
+func _disable_hitbox():
+	hitbox.disabled = true
+		
 	

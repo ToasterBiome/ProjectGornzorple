@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6k4c1b0wlxwb"]
+
+[ext_resource type="AudioStream" uid="uid://csp21nescka7g" path="res://sounds/explosion.wav" id="1_rl287"]
+
+[node name="OneShotExplosion" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_rl287")
+autoplay = true
+bus = &"SFX"

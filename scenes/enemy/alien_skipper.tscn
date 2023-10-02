@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://fd6ax4xm6hf0"]
+[gd_scene load_steps=4 format=3 uid="uid://fd6ax4xm6hf0"]
 
 [ext_resource type="PackedScene" uid="uid://bfu3xffu6q5jg" path="res://scenes/enemy/generic_ship.tscn" id="1_sfw5s"]
-[ext_resource type="PackedScene" path="res://model_scenes/alien_ship.tscn" id="2_i13po"]
+[ext_resource type="PackedScene" uid="uid://cpxpvv5w6tpxp" path="res://model_scenes/destroyed ships/alien_ship_destroyed.tscn" id="2_ewvqf"]
+[ext_resource type="PackedScene" uid="uid://cb5tgrqan7avx" path="res://model_scenes/alien_ship.tscn" id="2_i13po"]
 
-[node name="Alien Skipper" instance=ExtResource("1_sfw5s")]
+[node name="Alien Skipper" node_paths=PackedStringArray("model", "dead_model") instance=ExtResource("1_sfw5s")]
 max_health = 5
 speed = 10.0
 auto_look = false
 look_once = true
+model = NodePath("Alien_ship")
+dead_model = NodePath("Alien_ship_destroyed")
 
-[node name="Alien_ship" parent="." index="0" instance=ExtResource("2_i13po")]
+[node name="Alien_ship_destroyed" parent="." index="0" instance=ExtResource("2_ewvqf")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+visible = false
+
+[node name="Alien_ship" parent="." index="1" instance=ExtResource("2_i13po")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)

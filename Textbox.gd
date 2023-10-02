@@ -9,6 +9,8 @@ var open_tween: Tween
 var open = false
 var text_tween: Tween
 
+@onready var talking_sound: AudioStreamPlayer = $Talking
+
 var characters: Dictionary = {
 	"pilot" = preload("res://characters/Gornzorple.tres"),
 	"ai" = preload("res://characters/Squirt.tres"),
@@ -52,10 +54,12 @@ func show_text(text: String):
 	text_text.text = text #why
 	if(text_tween):
 		text_tween.kill()
+	talking_sound.play()
 	text_tween = get_tree().create_tween()
 	text_tween.tween_property(text_text, "visible_ratio", 1, 2)
 	await text_tween.finished
 	emit_signal("on_text_finished")
+	talking_sound.stop()
 	set_animation("default")
 	
 	

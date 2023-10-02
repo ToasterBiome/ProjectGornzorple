@@ -1,16 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8drvsigjfy1s"]
+[gd_scene load_steps=27 format=3 uid="uid://b8drvsigjfy1s"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_o60uw"]
 [ext_resource type="Script" path="res://Player.gd" id="1_tc5q8"]
 [ext_resource type="Texture2D" uid="uid://bo18a08038yj8" path="res://sprites/redbullet.png" id="3_cfulv"]
 [ext_resource type="PackedScene" uid="uid://hfka1v2a36ef" path="res://model_scenes/player_ship.tscn" id="3_eb2rq"]
+[ext_resource type="PackedScene" uid="uid://clu6txllm6ul2" path="res://model_scenes/particle_effects/human_particle_explosion.tscn" id="3_v4df4"]
+[ext_resource type="AudioStream" uid="uid://vbb0tatrghyk" path="res://sounds/laser1.wav" id="4_hrqgd"]
+[ext_resource type="PackedScene" uid="uid://ccdk76yl328o8" path="res://model_scenes/destroyed ships/player_ship_destroyed.tscn" id="4_i78tr"]
+[ext_resource type="AudioStream" uid="uid://dt0cdaokwcqmq" path="res://sounds/damage.wav" id="5_8tjoi"]
 [ext_resource type="PackedScene" uid="uid://b325n078e0sfa" path="res://model_scenes/satellite.tscn" id="5_52db2"]
+[ext_resource type="AudioStream" uid="uid://bhx8o2mcrwkty" path="res://sounds/radarbootup2.wav" id="8_7nvf8"]
 [ext_resource type="Texture2D" uid="uid://cffajd72emq5o" path="res://sprites/9slice.png" id="8_h0fsa"]
 [ext_resource type="Script" path="res://Textbox.gd" id="9_i107j"]
 [ext_resource type="Texture2D" uid="uid://cx8lmgatnmatx" path="res://sprites/border2.png" id="9_jx3uh"]
 [ext_resource type="Theme" uid="uid://d2nbqy6cx31ti" path="res://MainTheme.tres" id="10_ayhyq"]
 [ext_resource type="Script" path="res://Death Screen.gd" id="11_f38vn"]
 [ext_resource type="Texture2D" uid="uid://dyh3wpkbx1dex" path="res://sprites/sqrt4.png" id="11_wavdo"]
+[ext_resource type="Texture2D" uid="uid://d0vvl6uly4hv0" path="res://sprites/background.png" id="12_ab17d"]
+[ext_resource type="AudioStream" uid="uid://bil1tkw7ehhpj" path="res://sounds/yapping.wav" id="16_d16mm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
 radius = 1.48356
@@ -67,6 +74,10 @@ animations = [{
 [node name="World" type="Node3D"]
 script = ExtResource("1_o60uw")
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
+
 [node name="Timers" type="Node3D" parent="."]
 
 [node name="Shooting Star Timer" type="Timer" parent="Timers"]
@@ -76,11 +87,21 @@ wait_time = 4.0
 wait_time = 3.5
 
 [node name="Player" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-collision_mask = 0
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.5, 0)
+collision_mask = 10
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_tc5q8")
+
+[node name="Human_particle_explosion" parent="Player" instance=ExtResource("3_v4df4")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+emitting = false
+one_shot = true
+
+[node name="Player_ship_destroyed" parent="Player" instance=ExtResource("4_i78tr")]
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, 0.15, 0, -0.15, -6.55671e-09, 0, 0, 0)
+visible = false
+skeleton = NodePath("../..")
 
 [node name="PlayerShip" parent="Player" instance=ExtResource("3_eb2rq")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
@@ -90,6 +111,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14689e-07, 4.91152)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("SphereShape3D_j1qnr")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player"]
+current = true
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="Player"]
+stream = ExtResource("4_hrqgd")
+bus = &"SFX"
+
+[node name="Damage" type="AudioStreamPlayer3D" parent="Player"]
+stream = ExtResource("5_8tjoi")
+bus = &"SFX"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
@@ -127,6 +159,10 @@ skeleton = NodePath("../..")
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="Radiation Shield Satellite/Shield"]
 radius = 4.0
 
+[node name="Place" type="AudioStreamPlayer3D" parent="Radiation Shield Satellite"]
+stream = ExtResource("8_7nvf8")
+bus = &"SFX"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Shield Percentage" type="ProgressBar" parent="CanvasLayer"]
@@ -142,6 +178,7 @@ max_value = 1.0
 value = 1.0
 
 [node name="Textbox" type="NinePatchRect" parent="CanvasLayer"]
+visible = false
 self_modulate = Color(0.341176, 1, 0.870588, 1)
 anchors_preset = 7
 anchor_left = 0.5
@@ -211,7 +248,12 @@ text = "Relax Liberal, it's called dark humor."
 scroll_active = false
 visible_characters_behavior = 1
 
+[node name="Talking" type="AudioStreamPlayer" parent="CanvasLayer/Textbox"]
+stream = ExtResource("16_d16mm")
+bus = &"SFX"
+
 [node name="Death Screen" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -272,3 +314,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("10_ayhyq")
 text = "Return to Main Menu"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, -5.94606)
+modulate = Color(1, 1, 1, 0.552941)
+texture = ExtResource("12_ab17d")
