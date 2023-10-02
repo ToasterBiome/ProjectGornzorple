@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d215s47ur7b58"
+path="res://.godot/imported/destroyed_pear_ship.obj-645b432660c03d55a6b2c33533869a79.mesh"
+
+[deps]
+
+files=["res://.godot/imported/destroyed_pear_ship.obj-645b432660c03d55a6b2c33533869a79.mesh"]
+
+source_file="res://models/ships/destroyed ships/destroyed_pear_ship.obj"
+dest_files=["res://.godot/imported/destroyed_pear_ship.obj-645b432660c03d55a6b2c33533869a79.mesh", "res://.godot/imported/destroyed_pear_ship.obj-645b432660c03d55a6b2c33533869a79.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

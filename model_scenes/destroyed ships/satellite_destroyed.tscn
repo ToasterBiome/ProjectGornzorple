@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fmbajhcor4cy"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2db1esf1tbi4" path="res://models/ships/destroyed ships/destroyed_satellite.obj" id="1_gbltx"]
+
+[node name="Satellite_Destroyed" type="MeshInstance3D"]
+mesh = ExtResource("1_gbltx")

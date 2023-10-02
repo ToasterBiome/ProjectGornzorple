@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://b724bjypsq5fw"]
+
+[ext_resource type="ArrayMesh" uid="uid://dt0fa45rdjb43" path="res://models/ships/destroyed ships/destroyed_pirate_ship.obj" id="1_ii2lf"]
+[ext_resource type="Material" uid="uid://g85iot14hjd3" path="res://models/materials/pirate_ship_m.tres" id="2_35by4"]
+[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_1gxl8"]
+
+[node name="Pirate_ship_destroyed" type="MeshInstance3D"]
+mesh = ExtResource("1_ii2lf")
+surface_material_override/0 = ExtResource("2_35by4")
+surface_material_override/1 = ExtResource("3_1gxl8")
