@@ -30,15 +30,26 @@ var can_shoot = true
 
 @onready var hitbox = $CollisionShape3D
 
+@export var choreograph: bool = true
+
 func _ready():
 	health = max_health
 	firing_timer.timeout.connect(Callable(self,"_fire"))
 	if(look_once):
 		look_at(player.position, Vector3.BACK, true)
+	if(choreograph):
+		await get_tree().create_timer(1).timeout
+		var chor = Globals.choreograph_scene.instantiate()
+		get_parent().add_child(chor)
+		chor.global_position = global_position
+		chor.look_at(player.position, Vector3.BACK, true)
+		
 	
 	
 func _physics_process(delta):
 	if(health <= 0):
+		return
+	if(player.dead):
 		return
 	if(auto_look):
 		look_at(player.position, Vector3.BACK, true)

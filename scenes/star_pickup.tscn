@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj5a6vdllbo7e"]
+
+[ext_resource type="AudioStream" uid="uid://mt4omobhynox" path="res://sounds/starcollect.wav" id="1_oq6ih"]
+[ext_resource type="Script" path="res://code/OneShotAudio.gd" id="2_xpnkl"]
+
+[node name="Star Pickup" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_oq6ih")
+autoplay = true
+bus = &"SFX"
+script = ExtResource("2_xpnkl")

@@ -29,6 +29,8 @@ var max_shield = 4
 
 var shield_reduction_rate = 0.125
 
+@onready var star_particles: GPUParticles3D = $"Radiation Shield Satellite/Pickup"
+
 enum GAME_STATUS {
 	GAME_INTRO,
 	GAME_PLAYING,
@@ -40,7 +42,8 @@ var status: GAME_STATUS = GAME_STATUS.GAME_INTRO
 func _ready():
 	shooting_star_timer.timeout.connect(Callable(self,"_spawn_shooting_star"))
 	enemy_spawn_timer.timeout.connect(Callable(self,"_spawn_enemy"))
-	current_shield = max_shield
+	current_shield = max_shield * 0.75
+	_update_shield(0)
 	shield_progress_bar.value = current_shield
 	
 	death_screen.hide()
@@ -56,16 +59,19 @@ func _ready():
 		Globals.textbox.set_character("ai")
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("Congratulations on another successful parsec jump meteor smuggling dogfight mission, Gornzorple!")
-		await get_tree().create_timer(3.0).timeout
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
 		Globals.textbox.set_character("pilot")
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("Thanks SQRT, it's smooth sailing from here on out. Activate my cryo sleep function and wake me when we're back on Gorzopolis!")
-		await get_tree().create_timer(3.0).timeout
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
 		cutscene_particles.emitting = true
 		Globals.textbox.set_character("ai")
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("Sure thing Gorn- Wait a minute... WATCH OUT!")
-		await get_tree().create_timer(3.0).timeout
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
 		Globals.textbox.set_character("pilot")
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("Huh?")
@@ -74,25 +80,39 @@ func _ready():
 		Globals.textbox.set_character("ai")
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("You're entering a Cosmic Bullet Radiation Field! Quick - Deploy the Techno-Anti-Radiation Shield!")
-		await get_tree().create_timer(3.0).timeout
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
 		satellite.show()
 		radar_boot_sound.play()
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(2.0).timeout
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("Employing Techno-Anti-Radiation Shield. Utilize the Hercules Mark IV Ultimate System Mouse Button ONE to aim and the Icarus Mark VII WASD Keys to avoid the Cosmic Bullet Radiation Field! Good luck Gornzorple!")
 		particle_field.emitting = true
 		cutscene_particles.emitting = false
-		await get_tree().create_timer(6.0).timeout
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Looks like the shield is decaying rapidly.. I wonder if there is a way to charge it.")
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
+		_spawn_shooting_star(player.global_position)
+		await get_tree().create_timer(4.0).timeout
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Hmm.. catching the stars seems to recharge it!")
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(4.0).timeout
 	else:
 		particle_field.emitting = true
 		satellite.show()
 		radar_boot_sound.play()
+		current_shield = max_shield
 	Globals.textbox.set_character("ai")
 	var enemy = _spawn_enemy(2, Vector3(10, 9, 0))
 	enemy.can_shoot = false #for the tutorial
 	Globals.textbox.set_animation("talk")
 	Globals.textbox.show_text("G-g-g-g-ghost ships! Shoot them down!")
-	await get_tree().create_timer(3.0).timeout
+	await Globals.textbox.on_text_finished
+	await get_tree().create_timer(1.0).timeout
 	Globals.textbox.close_textbox()
 	player.can_move = true
 	shooting_star_timer.start()
@@ -101,12 +121,12 @@ func _ready():
 
 
 func _process(delta):
+	_update_shield(delta)
 	match(status):
 		GAME_STATUS.GAME_INTRO:
 			pass
 		GAME_STATUS.GAME_PLAYING:
 			current_shield -= delta * shield_reduction_rate
-			_update_shield(delta)
 			_check_bounds()
 		GAME_STATUS.GAME_ENDED:
 			pass
@@ -119,6 +139,7 @@ func _update_shield(delta):
 func add_shield(amount):
 	current_shield = min(current_shield + amount, max_shield)
 	Globals.score += amount
+	star_particles.emitting = true
 	#_update_shield()
 	
 func _check_bounds():
@@ -127,11 +148,16 @@ func _check_bounds():
 		player.explode()
 		_die()
 		
-func _spawn_shooting_star():
+func _spawn_shooting_star(override_direction = null):
 	var new_shooting_star = shooting_star_scene.instantiate()
 	add_child(new_shooting_star)
 	var spawn_location = _get_random_spawn_location()
-	var deviation = Vector3(randf_range(-2, 2), randf_range(-2, 2), 0)
+	
+	var deviation
+	if(!override_direction):
+		deviation = Vector3(randf_range(-2, 2), randf_range(-2, 2), 0)
+	else:
+		deviation = override_direction
 	new_shooting_star.fire(spawn_location, spawn_location.direction_to(deviation))
 	
 func _spawn_enemy(type = null, overide_location = null):
@@ -149,8 +175,8 @@ func _spawn_enemy(type = null, overide_location = null):
 	return new_enemy
 	
 func _get_random_spawn_location():
-	var x = randf_range(8.0, 16.0)
-	var y = randf_range(8.0, 16.0)
+	var x = randf_range(8.0, 9.0)
+	var y = randf_range(8.0, 9.0)
 	if(randf() > 0.5):
 		x = -x
 	if(randf() > 0.5):
@@ -165,9 +191,10 @@ func _die():
 	player.dead = true
 	#play boom effect here
 	Globals.textbox.set_character("ai")
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("NO!!!!!")
 	Globals.textbox.set_animation("worried")
+	Globals.textbox.show_text("NO!!!!!")
+	enemy_spawn_timer.stop()
+	shooting_star_timer.stop()
 	await get_tree().create_timer(2.0).timeout
 	death_screen.show()
 	death_screen.update()

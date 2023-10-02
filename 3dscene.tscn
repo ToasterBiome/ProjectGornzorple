@@ -1,7 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://b8drvsigjfy1s"]
+[gd_scene load_steps=35 format=3 uid="uid://b8drvsigjfy1s"]
 
 [ext_resource type="Script" path="res://GameManager.gd" id="1_o60uw"]
 [ext_resource type="Script" path="res://Player.gd" id="1_tc5q8"]
+[ext_resource type="AudioStream" uid="uid://0q2hkaux2i01" path="res://sounds/BossIntro.wav" id="2_wl14u"]
+[ext_resource type="Script" path="res://Music.gd" id="3_2lt47"]
 [ext_resource type="Texture2D" uid="uid://bo18a08038yj8" path="res://sprites/redbullet.png" id="3_cfulv"]
 [ext_resource type="PackedScene" uid="uid://hfka1v2a36ef" path="res://model_scenes/player_ship.tscn" id="3_eb2rq"]
 [ext_resource type="PackedScene" uid="uid://clu6txllm6ul2" path="res://model_scenes/particle_effects/human_particle_explosion.tscn" id="3_v4df4"]
@@ -17,10 +19,12 @@
 [ext_resource type="Script" path="res://Death Screen.gd" id="11_f38vn"]
 [ext_resource type="Texture2D" uid="uid://dyh3wpkbx1dex" path="res://sprites/sqrt4.png" id="11_wavdo"]
 [ext_resource type="Texture2D" uid="uid://d0vvl6uly4hv0" path="res://sprites/background.png" id="12_ab17d"]
+[ext_resource type="Material" uid="uid://nq5ini8ne375" path="res://models/materials/shield_material.tres" id="12_npl10"]
+[ext_resource type="Texture2D" uid="uid://yifn2y727bvi" path="res://sprites/star2.png" id="13_3kch2"]
 [ext_resource type="AudioStream" uid="uid://bil1tkw7ehhpj" path="res://sounds/yapping.wav" id="16_d16mm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
-radius = 1.48356
+radius = 0.4
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0uet6"]
 emission_shape = 6
@@ -47,18 +51,37 @@ size = Vector2(1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(6, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa08i"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.0470588)
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
 [sub_resource type="SphereMesh" id="SphereMesh_mbp77"]
 lightmap_size_hint = Vector2i(127, 64)
-material = SubResource("StandardMaterial3D_oa08i")
+material = ExtResource("12_npl10")
 flip_faces = true
 radius = 4.0
 height = 8.0
+
+[sub_resource type="Gradient" id="Gradient_qkc4b"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j0855"]
+gradient = SubResource("Gradient_qkc4b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wmd7e"]
+emission_shape = 1
+emission_sphere_radius = 0.01
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 4.0
+color_ramp = SubResource("GradientTexture1D_j0855")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3uiq"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("13_3kch2")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n87pk"]
+material = SubResource("StandardMaterial3D_c3uiq")
+size = Vector2(0.25, 0.25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jfw87"]
 animations = [{
@@ -75,8 +98,11 @@ animations = [{
 script = ExtResource("1_o60uw")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wl14u")
+volume_db = -18.0
 autoplay = true
 bus = &"Music"
+script = ExtResource("3_2lt47")
 
 [node name="Timers" type="Node3D" parent="."]
 
@@ -162,6 +188,15 @@ radius = 4.0
 [node name="Place" type="AudioStreamPlayer3D" parent="Radiation Shield Satellite"]
 stream = ExtResource("8_7nvf8")
 bus = &"SFX"
+
+[node name="Pickup" type="GPUParticles3D" parent="Radiation Shield Satellite"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wmd7e")
+draw_pass_1 = SubResource("PlaneMesh_n87pk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

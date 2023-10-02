@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://2cy5opkwecda"]
+[gd_scene load_steps=12 format=3 uid="uid://2cy5opkwecda"]
 
 [ext_resource type="PackedScene" uid="uid://cf5e74ylg03b1" path="res://scenes/shot.tscn" id="1_8hh2m"]
 [ext_resource type="ArrayMesh" uid="uid://0wuj1y7wkn8b" path="res://models/pickup/starfragment.obj" id="2_fc2vg"]
 [ext_resource type="Material" path="res://models/materials/star_fragment.tres" id="3_l3c3y"]
 [ext_resource type="Texture2D" uid="uid://yifn2y727bvi" path="res://sprites/star2.png" id="4_1uk3k"]
+[ext_resource type="AudioStream" uid="uid://bo4c803odhf8n" path="res://sounds/starloop.wav" id="5_dh52n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bv3sl"]
 radius = 0.188
@@ -39,6 +40,7 @@ collision_layer = 16
 collision_mask = 1
 speed = 10
 lifetime = 8.0
+shooting_star = true
 shot_type = 2
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -54,3 +56,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_buoxr")
 draw_pass_1 = SubResource("PlaneMesh_uad6r")
+
+[node name="Loop" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("5_dh52n")
+volume_db = -4.0
+autoplay = true
+bus = &"SFX"

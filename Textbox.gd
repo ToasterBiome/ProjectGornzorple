@@ -56,11 +56,12 @@ func show_text(text: String):
 		text_tween.kill()
 	talking_sound.play()
 	text_tween = get_tree().create_tween()
-	text_tween.tween_property(text_text, "visible_ratio", 1, 2)
+	text_tween.tween_property(text_text, "visible_ratio", 1, 0.0625 * text_text.text.length())
 	await text_tween.finished
 	emit_signal("on_text_finished")
 	talking_sound.stop()
-	set_animation("default")
+	if(portrait_sprite.animation == "talking"):
+		set_animation("default")
 	
 	
 func close_textbox():

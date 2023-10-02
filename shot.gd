@@ -9,6 +9,8 @@ var direction
 
 @export var lifetime: float = 2.0
 
+@export var shooting_star: bool = false
+
 enum ShotType {
 	Enemy,
 	Player,
@@ -40,4 +42,7 @@ func on_body_entered(body: Node3D):
 	print("hit")
 	if(body.has_method("hit")):
 		body.hit(self)
+	if(shooting_star):
+		var pickup_sound = Globals.star_pickup_scene.instantiate()
+		get_parent().add_child(pickup_sound)
 	queue_free()

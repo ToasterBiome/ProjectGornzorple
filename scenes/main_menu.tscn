@@ -1,8 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2ghkmxuygum7"]
+[gd_scene load_steps=12 format=3 uid="uid://c2ghkmxuygum7"]
 
-[ext_resource type="Texture2D" uid="uid://crml8n3txxxwd" path="res://sprites/fake_logo.png" id="1_1ev7k"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_svgmd"]
+[ext_resource type="Texture2D" uid="uid://cranbt5h7p626" path="res://sprites/logo/gornzorplelogo.png" id="2_3xll0"]
 [ext_resource type="Theme" uid="uid://d2nbqy6cx31ti" path="res://MainTheme.tres" id="3_7pdec"]
+[ext_resource type="Texture2D" uid="uid://d0vvl6uly4hv0" path="res://sprites/background.png" id="3_kqkm8"]
+[ext_resource type="Script" path="res://scenes/Close Button.gd" id="5_5y50w"]
+[ext_resource type="Script" path="res://scenes/url_handler.gd" id="5_cq1ag"]
+[ext_resource type="AudioStream" uid="uid://cmdse03rcqufe" path="res://sounds/Map.wav" id="5_h2li4"]
+[ext_resource type="Texture2D" uid="uid://8ecwiv3jrnk7" path="res://sprites/godot.png" id="7_ppiy3"]
+[ext_resource type="Texture2D" uid="uid://cfjpceef4f3a7" path="res://sprites/logo/logo1.png" id="8_kog4s"]
+[ext_resource type="Texture2D" uid="uid://b35hiuvwjbgo5" path="res://sprites/logo/logo2.png" id="9_tdiol"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4b8eg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kog4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tdiol")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,54 +34,194 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_svgmd")
 
+[node name="FakeLogo2" type="Sprite2D" parent="."]
+position = Vector2(641, 362)
+texture = ExtResource("3_kqkm8")
+
 [node name="FakeLogo" type="Sprite2D" parent="."]
 position = Vector2(611, 163)
-texture = ExtResource("1_1ev7k")
-
-[node name="Play Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 781.0
-offset_top = 473.0
-offset_right = 851.0
-offset_bottom = 521.0
-theme = ExtResource("3_7pdec")
-text = "Play"
-
-[node name="Play (Skip) Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 811.0
-offset_top = 536.0
-offset_right = 881.0
-offset_bottom = 584.0
-theme = ExtResource("3_7pdec")
-text = "Play (skip cutscene)
-"
-
-[node name="Credits Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 643.0
-offset_top = 595.0
-offset_right = 713.0
-offset_bottom = 643.0
-theme = ExtResource("3_7pdec")
-text = "Credits"
-
-[node name="Exit Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 568.0
-offset_top = 462.0
-offset_right = 638.0
-offset_bottom = 510.0
-theme = ExtResource("3_7pdec")
-text = "Exit
-"
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3xll0")
 
 [node name="Best Score Text" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_right = 264.0
-offset_bottom = 29.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 268.0
+offset_bottom = 33.0
 theme = ExtResource("3_7pdec")
 bbcode_enabled = true
 text = "Best Score: 0"
 scroll_active = false
 autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.5
+offset_top = -268.0
+offset_right = 150.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Play Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_7pdec")
+text = "Play"
+
+[node name="Play (Skip) Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_7pdec")
+text = "Play (skip cutscene)
+"
+
+[node name="Credits Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_7pdec")
+text = "Credits"
+
+[node name="Exit Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_7pdec")
+text = "Exit
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+theme = ExtResource("3_7pdec")
+bbcode_enabled = true
+text = "[center]Music"
+
+[node name="Music" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(208, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+theme = ExtResource("3_7pdec")
+bbcode_enabled = true
+text = "[center]SFX"
+
+[node name="SFX" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(208, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="Credits" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.74902)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -320.0
+offset_right = 256.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_7pdec")
+bbcode_enabled = true
+text = "PRISMAPUNCH GAMES
+Declan Gatenby - ugly_garfield - 2D Art, SFX
+Alex Dimitrijevic - baiomu - Programming
+Alex Hartman - hardtmannn - 3D Art, Space Background
+[u]Testers:[/u]
+Lil E, Lazenn, Chubbygummibear, cowbot93, thegoldencat413
+[u]Special Thanks:[/u]
+Shammy - Name
+[u]Assets:[/u]
+[url=https://www.dafont.com/bad-comic.font]Bad Comic[/url] by GGBotNet
+[url=https://mixkit.co/free-sound-effects/game/]Mixkit[/url]
+[url=https://opengameart.org/content/library-of-game-sounds]Library of Game Sounds[/url] by nphill85
+[url=https://opengameart.org/content/nes-shooter-music-5-tracks-3-jingles]NES Shooter Music[/url] by SketchyLogic
+[url=https://sfbgames.com/chiptone/]Chiptone[/url] by SFBGames
+"
+script = ExtResource("5_cq1ag")
+
+[node name="Close Button" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.5
+offset_top = -54.0
+offset_right = 34.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_7pdec")
+theme_override_font_sizes/font_size = 24
+text = "Close"
+script = ExtResource("5_5y50w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_h2li4")
+volume_db = -16.0
+autoplay = true
+bus = &"Music"
+
+[node name="Splash" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Splash"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -217.5
+offset_top = -218.0
+offset_right = 217.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("7_ppiy3")
+
+[node name="Logo" type="AnimatedSprite2D" parent="Splash"]
+position = Vector2(640, 256)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_4b8eg")
+autoplay = "default"
