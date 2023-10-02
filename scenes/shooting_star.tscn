@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://2cy5opkwecda"]
+[gd_scene load_steps=11 format=3 uid="uid://2cy5opkwecda"]
 
 [ext_resource type="PackedScene" uid="uid://cf5e74ylg03b1" path="res://scenes/shot.tscn" id="1_8hh2m"]
 [ext_resource type="ArrayMesh" uid="uid://0wuj1y7wkn8b" path="res://models/pickup/starfragment.obj" id="2_fc2vg"]
 [ext_resource type="Material" path="res://models/materials/star_fragment.tres" id="3_l3c3y"]
 [ext_resource type="Texture2D" uid="uid://yifn2y727bvi" path="res://sprites/star2.png" id="4_1uk3k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bv3sl"]
+radius = 0.188
 
 [sub_resource type="Curve" id="Curve_10csa"]
 _data = [Vector2(0.25784, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -37,6 +40,9 @@ collision_mask = 1
 speed = 10
 lifetime = 8.0
 shot_type = 2
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_bv3sl")
 
 [node name="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(0.15, 1.25278e-23, -5.47609e-31, 0, -6.55671e-09, -0.15, -1.25278e-23, 0.15, -6.55671e-09, 0, 0, 0)

@@ -49,36 +49,41 @@ func _ready():
 	particle_field.emitting = false
 	cutscene_particles.emitting = false
 	
-	await get_tree().create_timer(1.0).timeout
+	if(!Globals.skip_cutscene):
+		await get_tree().create_timer(1.0).timeout
+		Globals.textbox.set_character("ai")
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Congratulations on another successful parsec jump meteor smuggling dogfight mission, Gornzorple!")
+		await get_tree().create_timer(3.0).timeout
+		Globals.textbox.set_character("pilot")
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Thanks SQRT, it's smooth sailing from here on out. Activate my cryo sleep function and wake me when we're back on Gorzopolis!")
+		await get_tree().create_timer(3.0).timeout
+		cutscene_particles.emitting = true
+		Globals.textbox.set_character("ai")
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Sure thing Gorn- Wait a minute... WATCH OUT!")
+		await get_tree().create_timer(3.0).timeout
+		Globals.textbox.set_character("pilot")
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Huh?")
+		await Globals.textbox.on_text_finished
+		await get_tree().create_timer(1.0).timeout
+		Globals.textbox.set_character("ai")
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("You're entering a Cosmic Bullet Radiation Field! Quick - Deploy the Techno-Anti-Radiation Shield!")
+		await get_tree().create_timer(3.0).timeout
+		satellite.show()
+		await get_tree().create_timer(1.0).timeout
+		Globals.textbox.set_animation("talk")
+		Globals.textbox.show_text("Employing Techno-Anti-Radiation Shield. Utilize the Hercules Mark IV Ultimate System Mouse Button ONE to aim and the Icarus Mark VII WASD Keys to avoid the Cosmic Bullet Radiation Field! Good luck Gornzorple!")
+		particle_field.emitting = true
+		cutscene_particles.emitting = false
+		await get_tree().create_timer(6.0).timeout
+	else:
+		particle_field.emitting = true
+		satellite.show()
 	Globals.textbox.set_character("ai")
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("Congratulations on another successful parsec jump meteor smuggling dogfight mission, Gornzorple!")
-	await get_tree().create_timer(3.0).timeout
-	Globals.textbox.set_character("pilot")
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("Thanks SQRT, it's smooth sailing from here on out. Activate my cryo sleep function and wake me when we're back on Gorzopolis!")
-	await get_tree().create_timer(3.0).timeout
-	cutscene_particles.emitting = true
-	Globals.textbox.set_character("ai")
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("Sure thing Gorn- Wait a minute... WATCH OUT!")
-	await get_tree().create_timer(3.0).timeout
-	Globals.textbox.set_character("pilot")
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("Huh?")
-	await Globals.textbox.on_text_finished
-	await get_tree().create_timer(1.0).timeout
-	Globals.textbox.set_character("ai")
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("You're entering a Cosmic Bullet Radiation Field! Quick - Deploy the Techno-Anti-Radiation Shield!")
-	await get_tree().create_timer(3.0).timeout
-	satellite.show()
-	await get_tree().create_timer(1.0).timeout
-	Globals.textbox.set_animation("talk")
-	Globals.textbox.show_text("Employing Techno-Anti-Radiation Shield. Utilize the Hercules Mark IV Ultimate System Mouse Button ONE to aim and the Icarus Mark VII WASD Keys to avoid the Cosmic Bullet Radiation Field! Good luck Gornzorple!")
-	particle_field.emitting = true
-	cutscene_particles.emitting = false
-	await get_tree().create_timer(6.0).timeout
 	var enemy = _spawn_enemy(2, Vector3(10, 9, 0))
 	enemy.can_shoot = false #for the tutorial
 	Globals.textbox.set_animation("talk")

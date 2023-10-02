@@ -26,6 +26,16 @@ offset_bottom = 521.0
 theme = ExtResource("3_7pdec")
 text = "Play"
 
+[node name="Play (Skip) Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 811.0
+offset_top = 536.0
+offset_right = 881.0
+offset_bottom = 584.0
+theme = ExtResource("3_7pdec")
+text = "Play (skip cutscene)
+"
+
 [node name="Credits Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 643.0
