@@ -14,6 +14,7 @@ mesh = ExtResource("1_s200g")
 surface_material_override/0 = ExtResource("2_12bif")
 
 [node name="Satellite_dish" type="MeshInstance3D" parent="Satellite_body"]
+transform = Transform3D(1, 7.09406e-10, -2.32831e-10, -1.39153e-10, 1, -4.65661e-10, 0, 0, 1, 0.041471, 0.0078435, 0.0106487)
 mesh = ExtResource("2_h38m4")
 surface_material_override/0 = ExtResource("2_12bif")
 script = ExtResource("3_eesn3")

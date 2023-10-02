@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5r33berp5kuw"
-path="res://.godot/imported/SATELITTE.jpg-48d81f9f4a8f27db52c54982a83a6f0e.ctex"
+uid="uid://c3dy0ory5f317"
+path.s3tc="res://.godot/imported/Pirate_ship_texture.jpg-5b8636fba0bcb91ee1d53b12001b0e76.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://textures/SATELITTE.jpg"
-dest_files=["res://.godot/imported/SATELITTE.jpg-48d81f9f4a8f27db52c54982a83a6f0e.ctex"]
+source_file="res://textures/Pirate_ship_texture.jpg"
+dest_files=["res://.godot/imported/Pirate_ship_texture.jpg-5b8636fba0bcb91ee1d53b12001b0e76.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

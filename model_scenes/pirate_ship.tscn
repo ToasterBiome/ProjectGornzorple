@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsst3vb5oulyt"]
+[gd_scene load_steps=3 format=3 uid="uid://bsst3vb5oulyt"]
 
 [ext_resource type="ArrayMesh" uid="uid://bt724lo2ur0v3" path="res://models/ships/enemy_ship/pirate_ship/pirate_ship.obj" id="1_bb3g1"]
+[ext_resource type="Material" uid="uid://g85iot14hjd3" path="res://models/materials/pirate_ship_m.tres" id="2_xticd"]
 
 [node name="Pirate_ship" type="MeshInstance3D"]
 mesh = ExtResource("1_bb3g1")
+surface_material_override/0 = ExtResource("2_xticd")
