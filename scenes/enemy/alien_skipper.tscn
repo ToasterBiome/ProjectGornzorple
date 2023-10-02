@@ -9,5 +9,5 @@ speed = 10.0
 auto_look = false
 look_once = true
 
-[node name="Alien_ship" parent="." index="2" instance=ExtResource("2_i13po")]
+[node name="Alien_ship" parent="." index="0" instance=ExtResource("2_i13po")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)

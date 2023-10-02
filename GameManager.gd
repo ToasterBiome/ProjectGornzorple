@@ -4,6 +4,10 @@ extends Node3D
 @onready var shield = $"Radiation Shield Satellite/Shield"
 
 
+@onready var satellite = $"Radiation Shield Satellite"
+@onready var particle_field: GPUParticles3D = $GPUParticles3D
+
+
 @onready var shield_progress_bar: ProgressBar = $"CanvasLayer/Shield Percentage"
 @onready var shooting_star_timer: Timer = $"Timers/Shooting Star Timer"
 @onready var enemy_spawn_timer: Timer = $"Timers/Enemy Timer"
@@ -20,17 +24,37 @@ var max_shield = 4
 
 var shield_reduction_rate = 0.125
 
+enum GAME_STATUS {
+	GAME_INTRO,
+	GAME_PLAYING,
+	GAME_ENDED
+}
+
+var status: GAME_STATUS = GAME_STATUS.GAME_INTRO
+
 func _ready():
 	shooting_star_timer.timeout.connect(Callable(self,"_spawn_shooting_star"))
 	enemy_spawn_timer.timeout.connect(Callable(self,"_spawn_enemy"))
 	current_shield = max_shield
 	shield_progress_bar.value = current_shield
+	
+	#setup cutscene
+	
+	satellite.hide()
+	particle_field.emitting = false
 
 
 func _process(delta):
-	current_shield -= delta * shield_reduction_rate
-	_update_shield(delta)
-	_check_bounds()
+	match(status):
+		GAME_STATUS.GAME_INTRO:
+			pass
+		GAME_STATUS.GAME_PLAYING:
+			current_shield -= delta * shield_reduction_rate
+			_update_shield(delta)
+			_check_bounds()
+			pass
+		GAME_STATUS.GAME_ENDED:
+			pass
 	
 func _update_shield(delta):
 	shield.scale = shield.scale.lerp(Vector3(current_shield,current_shield,current_shield), delta * 2)

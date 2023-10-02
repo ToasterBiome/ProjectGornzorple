@@ -1,24 +1,22 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1wjatgyf60xk"]
 
 [ext_resource type="PackedScene" uid="uid://bfu3xffu6q5jg" path="res://scenes/enemy/generic_ship.tscn" id="1_vuqqt"]
-[ext_resource type="ArrayMesh" uid="uid://bt724lo2ur0v3" path="res://models/ships/enemy_ship/pirate_ship/pirate_ship.obj" id="2_uabnh"]
+[ext_resource type="PackedScene" path="res://model_scenes/pirate_ship.tscn" id="2_r8l7q"]
 
 [node name="Big Chungus" node_paths=PackedStringArray("firing_points") instance=ExtResource("1_vuqqt")]
-firing_points = [NodePath("PirateShip/Firing Point A"), NodePath("PirateShip/Firing Point B"), NodePath("PirateShip/Firing Point C"), NodePath("PirateShip/Firing Point D")]
+firing_points = [NodePath("Pirate_ship/Firing Point A"), NodePath("Pirate_ship/Firing Point B"), NodePath("Pirate_ship/Firing Point C"), NodePath("Pirate_ship/Firing Point D")]
 
-[node name="PirateShip" type="MeshInstance3D" parent="." index="2"]
+[node name="Pirate_ship" parent="." index="0" instance=ExtResource("2_r8l7q")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
-mesh = ExtResource("2_uabnh")
-skeleton = NodePath("../..")
 
-[node name="Firing Point A" type="Node3D" parent="PirateShip" index="0"]
+[node name="Firing Point A" type="Node3D" parent="Pirate_ship" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, -3.55271e-15, 1, -7.23945, 0, 0)
 
-[node name="Firing Point B" type="Node3D" parent="PirateShip" index="1"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 7.28638, 0, 0)
+[node name="Firing Point B" type="Node3D" parent="Pirate_ship" index="1"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 3.55271e-15, 0, -3.55271e-15, 0.999999, 7.28638, 0, 0)
 
-[node name="Firing Point C" type="Node3D" parent="PirateShip" index="2"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 1.77636e-14, 0, -1.77636e-14, 0.999999, 4.65285, 2.48377e-07, 5.68219)
+[node name="Firing Point C" type="Node3D" parent="Pirate_ship" index="2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 2.13163e-14, 0, -2.13163e-14, 0.999999, 4.65285, 2.48377e-07, 5.68219)
 
-[node name="Firing Point D" type="Node3D" parent="PirateShip" index="3"]
+[node name="Firing Point D" type="Node3D" parent="Pirate_ship" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.4869e-14, 0, -2.4869e-14, 1, -4.61529, 2.48377e-07, 5.68219)
