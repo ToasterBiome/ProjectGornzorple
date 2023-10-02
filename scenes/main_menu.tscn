@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ghkmxuygum7"]
+
+[ext_resource type="Texture2D" uid="uid://crml8n3txxxwd" path="res://sprites/fake_logo.png" id="1_1ev7k"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_svgmd"]
+[ext_resource type="Theme" uid="uid://d2nbqy6cx31ti" path="res://MainTheme.tres" id="3_7pdec"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svgmd")
+
+[node name="FakeLogo" type="Sprite2D" parent="."]
+position = Vector2(611, 163)
+texture = ExtResource("1_1ev7k")
+
+[node name="Play Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 473.0
+offset_right = 851.0
+offset_bottom = 521.0
+theme = ExtResource("3_7pdec")
+text = "Play"
+
+[node name="Credits Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 595.0
+offset_right = 713.0
+offset_bottom = 643.0
+theme = ExtResource("3_7pdec")
+text = "Credits"
+
+[node name="Exit Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 462.0
+offset_right = 638.0
+offset_bottom = 510.0
+theme = ExtResource("3_7pdec")
+text = "Exit
+"
+
+[node name="Best Score Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 29.0
+theme = ExtResource("3_7pdec")
+bbcode_enabled = true
+text = "Best Score: 0"
+scroll_active = false
+autowrap_mode = 0
