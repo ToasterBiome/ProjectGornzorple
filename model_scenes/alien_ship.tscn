@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb5tgrqan7avx"]
+[gd_scene load_steps=6 format=3 uid="uid://dkc7h7mkavrit"]
 
 [ext_resource type="ArrayMesh" uid="uid://o3tmqx7baw8m" path="res://models/ships/enemy_ship/alien_ship/alien_ship.obj" id="1_s4g0f"]
-[ext_resource type="Material" uid="uid://bk6e8u5plb25w" path="res://models/materials/alien_ship_m.tres" id="2_cj2py"]
+[ext_resource type="Material" path="res://models/materials/alien_ship_m.tres" id="2_2xnyi"]
 [ext_resource type="ArrayMesh" uid="uid://cflomr7anmbqa" path="res://models/ships/enemy_ship/alien_ship/alien_ship_wings.obj" id="2_ed75n"]
 [ext_resource type="Script" path="res://model_scenes/alien_wings.gd" id="3_8gt34"]
-[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_xud7a"]
+[ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_tdp8n"]
 
 [node name="Alien_ship" type="MeshInstance3D"]
 mesh = ExtResource("1_s4g0f")
-surface_material_override/0 = ExtResource("2_cj2py")
-surface_material_override/1 = ExtResource("3_xud7a")
+surface_material_override/0 = ExtResource("2_2xnyi")
+surface_material_override/1 = ExtResource("3_tdp8n")
 
 [node name="alien_wings" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_ed75n")
-surface_material_override/0 = ExtResource("2_cj2py")
+surface_material_override/0 = ExtResource("2_2xnyi")
 script = ExtResource("3_8gt34")
