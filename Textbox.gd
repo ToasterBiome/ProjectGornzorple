@@ -7,12 +7,15 @@ class_name Textbox
 
 var open_tween: Tween
 var open = false
+var text_tween: Tween
 
 var characters: Dictionary = {
 	"pilot" = preload("res://characters/Gornzorple.tres"),
 	"ai" = preload("res://characters/Squirt.tres"),
 	"rival" = preload("res://characters/Blade.tres")
 }
+
+signal on_text_finished
 
 func _ready():
 	Globals.textbox = self
@@ -25,12 +28,20 @@ func _ready():
 #	show_text("I think he is attempting something called \"Cringe\"!","ai","talk")
 #	await get_tree().create_timer(2).timeout
 #	close_textbox()
+		
+func set_character(character_id: String):
+	var character = characters[character_id]
+	if(!character):
+		name_text.text = "ERROR"
+	else:
+		name_text.text = character.name
+	portrait_sprite.sprite_frames = character.portrait
+
+func set_animation(animation: String):
+	portrait_sprite.animation = animation
+	portrait_sprite.play(animation)
 	
-func _process(delta):
-	if(text_text.visible_ratio < 1):
-		text_text.visible_ratio += delta
-	
-func show_text(text: String, character_id: String, animation: String):
+func show_text(text: String):
 	if(!open):
 		open = true
 		show()
@@ -38,21 +49,21 @@ func show_text(text: String, character_id: String, animation: String):
 		open_tween = get_tree().create_tween()
 		open_tween.tween_property(self,"scale",Vector2(1,1), 0.25)
 	text_text.visible_ratio = 0
-	var character = characters[character_id]
-	if(!character):
-		name_text.text = "ERROR"
-	else:
-		name_text.text = character.name
 	text_text.text = text #why
-	portrait_sprite.sprite_frames = character.portrait
-	#portrait_sprite.animation = animation
-	portrait_sprite.play(animation)
+	if(text_tween):
+		text_tween.kill()
+	text_tween = get_tree().create_tween()
+	text_tween.tween_property(text_text, "visible_ratio", 1, 2)
+	await text_tween.finished
+	emit_signal("on_text_finished")
+	set_animation("default")
+	
 	
 func close_textbox():
 	text_text.text = ""
 	portrait_sprite.sprite_frames = null
 	open_tween = get_tree().create_tween()
 	open_tween.tween_property(self,"scale",Vector2(1,0), 0.25)
-	await get_tree().create_timer(0.25).timeout
+	await open_tween.finished
 	hide()
 	open = false

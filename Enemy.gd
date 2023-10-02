@@ -6,6 +6,7 @@ var health: int = 0
 
 @onready var player = $"../Player"
 @onready var firing_timer: Timer = $"Firing Timer"
+@onready var manager = $"../"
 
 @export var firing_points: Array[Node3D]
 @export var firing_range: float = 10.0
@@ -17,6 +18,8 @@ var shot = preload("res://scenes/enemy_shot.tscn")
 var firing_index: int = 0
 @export var auto_look: bool = true
 @export var look_once: bool = false
+
+var can_shoot = true
 
 func _ready():
 	health = max_health
@@ -31,6 +34,10 @@ func _physics_process(delta):
 	move_and_collide(basis.z * delta * speed)
 
 func _fire():
+	if(manager.status != GameManager.GAME_STATUS.GAME_PLAYING):
+		return
+	if(!can_shoot):
+		return
 	if(!_in_range() || !firing_points.size()):
 		return
 	firing_index += 1
@@ -44,8 +51,9 @@ func _fire():
 func _in_range():
 	return (position.distance_to(player.position) <= firing_range)
 	
-func hit(body: Node3D):
+func hit(_body: Node3D):
 	health -= 1
 	if(health <= 0):
 		queue_free()
+		Globals.score += 10
 	

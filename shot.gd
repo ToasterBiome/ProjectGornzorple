@@ -34,7 +34,6 @@ func _process(delta):
 func fire(fire_pos, rot):
 	global_position = fire_pos
 	direction = rot
-	var degrees = rad_to_deg(position.angle_to(position + direction))
 	mesh.look_at(global_position + direction, Vector3.BACK)
 	
 func on_body_entered(body: Node3D):
