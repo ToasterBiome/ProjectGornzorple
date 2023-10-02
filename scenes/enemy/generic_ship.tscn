@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfu3xffu6q5jg"]
+[gd_scene load_steps=6 format=3 uid="uid://bfu3xffu6q5jg"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_5ag0v"]
+[ext_resource type="AudioStream" uid="uid://vbb0tatrghyk" path="res://sounds/laser1.wav" id="2_o7s1p"]
+[ext_resource type="AudioStream" uid="uid://dt0cdaokwcqmq" path="res://sounds/damage.wav" id="3_esom4"]
+[ext_resource type="PackedScene" uid="uid://dv7tgxt26hw7v" path="res://model_scenes/particle_effects/radiation_particle_explosion.tscn" id="4_2hspp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j1qnr"]
 radius = 1.0
@@ -20,3 +23,18 @@ autostart = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_j1qnr")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_o7s1p")
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="Damage" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_esom4")
+pitch_scale = 0.75
+bus = &"SFX"
+
+[node name="Radiation_particle_explosion" parent="." instance=ExtResource("4_2hspp")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+emitting = false
+one_shot = true

@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn0juof0wubo4"]
+[gd_scene load_steps=4 format=3 uid="uid://dn0juof0wubo4"]
 
 [ext_resource type="PackedScene" uid="uid://bfu3xffu6q5jg" path="res://scenes/enemy/generic_ship.tscn" id="1_fbmjj"]
-[ext_resource type="PackedScene" path="res://model_scenes/pear_ship.tscn" id="2_ybqcc"]
+[ext_resource type="PackedScene" uid="uid://d1yvisaqpxxoa" path="res://model_scenes/destroyed ships/pear_ship_destroyed.tscn" id="2_sfch5"]
+[ext_resource type="PackedScene" uid="uid://sag5frrjmocu" path="res://model_scenes/pear_ship.tscn" id="2_ybqcc"]
 
-[node name="Pear Ship" node_paths=PackedStringArray("firing_points") instance=ExtResource("1_fbmjj")]
+[node name="Pear Ship" node_paths=PackedStringArray("firing_points", "model", "dead_model") instance=ExtResource("1_fbmjj")]
 max_health = 5
 firing_points = [NodePath("MeshInstance3D/Firing Offset")]
 speed = 2.0
+model = NodePath("MeshInstance3D")
+dead_model = NodePath("Pear_ship_destroyed")
 
-[node name="MeshInstance3D" parent="." index="2" instance=ExtResource("2_ybqcc")]
+[node name="Pear_ship_destroyed" parent="." index="0" instance=ExtResource("2_sfch5")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+visible = false
+
+[node name="MeshInstance3D" parent="." index="3" instance=ExtResource("2_ybqcc")]
 transform = Transform3D(0.149999, -0.000552104, 0.00034446, 0.000552796, 0.149999, -0.000301172, -0.000343348, 0.000302439, 0.149999, 0, 0, 0)
 
 [node name="Firing Offset" type="Node3D" parent="MeshInstance3D" index="0"]

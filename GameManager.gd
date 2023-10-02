@@ -15,6 +15,8 @@ class_name GameManager
 @onready var shooting_star_timer: Timer = $"Timers/Shooting Star Timer"
 @onready var enemy_spawn_timer: Timer = $"Timers/Enemy Timer"
 
+@onready var radar_boot_sound: AudioStreamPlayer3D = $"Radiation Shield Satellite/Place"
+
 var shooting_star_scene = preload("res://scenes/shooting_star.tscn")
 
 var enemy_scenes = [preload("res://scenes/enemy/big_chungus.tscn"), 
@@ -74,6 +76,7 @@ func _ready():
 		Globals.textbox.show_text("You're entering a Cosmic Bullet Radiation Field! Quick - Deploy the Techno-Anti-Radiation Shield!")
 		await get_tree().create_timer(3.0).timeout
 		satellite.show()
+		radar_boot_sound.play()
 		await get_tree().create_timer(1.0).timeout
 		Globals.textbox.set_animation("talk")
 		Globals.textbox.show_text("Employing Techno-Anti-Radiation Shield. Utilize the Hercules Mark IV Ultimate System Mouse Button ONE to aim and the Icarus Mark VII WASD Keys to avoid the Cosmic Bullet Radiation Field! Good luck Gornzorple!")
@@ -83,6 +86,7 @@ func _ready():
 	else:
 		particle_field.emitting = true
 		satellite.show()
+		radar_boot_sound.play()
 	Globals.textbox.set_character("ai")
 	var enemy = _spawn_enemy(2, Vector3(10, 9, 0))
 	enemy.can_shoot = false #for the tutorial
@@ -120,6 +124,7 @@ func add_shield(amount):
 func _check_bounds():
 	var distance = player.position.distance_to(Vector3.ZERO)
 	if(distance > current_shield * 2):
+		player.explode()
 		_die()
 		
 func _spawn_shooting_star():

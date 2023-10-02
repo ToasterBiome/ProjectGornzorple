@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1wjatgyf60xk"]
+[gd_scene load_steps=4 format=3 uid="uid://d1wjatgyf60xk"]
 
 [ext_resource type="PackedScene" uid="uid://bfu3xffu6q5jg" path="res://scenes/enemy/generic_ship.tscn" id="1_vuqqt"]
-[ext_resource type="PackedScene" path="res://model_scenes/pirate_ship.tscn" id="2_r8l7q"]
+[ext_resource type="PackedScene" uid="uid://b724bjypsq5fw" path="res://model_scenes/destroyed ships/pirate_ship_destroyed.tscn" id="2_4pvow"]
+[ext_resource type="PackedScene" uid="uid://bsst3vb5oulyt" path="res://model_scenes/pirate_ship.tscn" id="2_r8l7q"]
 
-[node name="Big Chungus" node_paths=PackedStringArray("firing_points") instance=ExtResource("1_vuqqt")]
+[node name="Big Chungus" node_paths=PackedStringArray("firing_points", "model", "dead_model") instance=ExtResource("1_vuqqt")]
 firing_points = [NodePath("Pirate_ship/Firing Point A"), NodePath("Pirate_ship/Firing Point B"), NodePath("Pirate_ship/Firing Point C"), NodePath("Pirate_ship/Firing Point D")]
+model = NodePath("Pirate_ship")
+dead_model = NodePath("Pirate_ship_destroyed")
 
-[node name="Pirate_ship" parent="." index="0" instance=ExtResource("2_r8l7q")]
+[node name="Pirate_ship_destroyed" parent="." index="0" instance=ExtResource("2_4pvow")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+visible = false
+
+[node name="Pirate_ship" parent="." index="1" instance=ExtResource("2_r8l7q")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 
 [node name="Firing Point A" type="Node3D" parent="Pirate_ship" index="0"]
