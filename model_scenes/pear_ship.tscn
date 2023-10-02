@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://wxoo60tjrle3" path="res://models/materials/ghost_emissive.tres" id="3_eqirh"]
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(0.999991, -0.0036807, 0.00229641, 0.00368531, 0.999991, -0.00200781, -0.00228899, 0.00201626, 0.999995, 0, 0, 0)
+transform = Transform3D(0.999991, -0.0036807, 0.00229641, 0.00368531, 0.999991, -0.00200781, -0.00228899, 0.00201626, 0.999995, -0.00535631, 0, 0)
 mesh = ExtResource("1_lyefo")
 surface_material_override/0 = ExtResource("2_uedj4")
 surface_material_override/1 = ExtResource("3_eqirh")

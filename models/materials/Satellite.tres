@@ -1,10 +1,10 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://48sv03dexq5u"]
 
-[ext_resource type="Texture2D" uid="uid://c5r33berp5kuw" path="res://textures/SATELITTE.jpg" id="1_l6uaj"]
+[ext_resource type="Texture2D" uid="uid://doy04h1vep0xv" path="res://textures/SATELITTE.png" id="1_ea2ap"]
 
 [resource]
 diffuse_mode = 3
-albedo_texture = ExtResource("1_l6uaj")
+albedo_texture = ExtResource("1_ea2ap")
 rim = 0.4
 rim_tint = 0.25
 ao_light_affect = 1.0
