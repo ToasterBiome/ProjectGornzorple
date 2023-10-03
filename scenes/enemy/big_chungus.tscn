@@ -8,6 +8,7 @@
 firing_points = [NodePath("Pirate_ship/Firing Point A"), NodePath("Pirate_ship/Firing Point B"), NodePath("Pirate_ship/Firing Point C"), NodePath("Pirate_ship/Firing Point D")]
 model = NodePath("Pirate_ship")
 dead_model = NodePath("Pirate_ship_destroyed")
+choreograph = false
 
 [node name="Pirate_ship_destroyed" parent="." index="0" instance=ExtResource("2_4pvow")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)

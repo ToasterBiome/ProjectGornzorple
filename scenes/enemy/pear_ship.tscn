@@ -10,6 +10,7 @@ firing_points = [NodePath("MeshInstance3D/Firing Offset")]
 speed = 2.0
 model = NodePath("MeshInstance3D")
 dead_model = NodePath("Pear_ship_destroyed")
+choreograph = false
 
 [node name="Pear_ship_destroyed" parent="." index="0" instance=ExtResource("2_sfch5")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
